@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<title>MaxSAT Evaluation 2017</title>
+
+<script src="canvasmath.js"></script>
+<script src="gnuplot_common.js"></script>
+
+</head>
+<body oncontextmenu="return false;">
+  
+
+<h1>MaxSAT Evaluation 2017: Summary of Unweighted Complete Track</h1>
+
+<p></p>
+
+<center>
+<table border="1">
+<tr><th>Solver</th><th>#Solved</th><th>Time(avg)</th></tr>
+<tr><td>Open-WBO-RES</td><td>652</td><td>129.9</td></tr>
+<tr><td>Open-WBO-MSE16<sup>&#x271D;</sup></td><td>651</td><td>130.61</td></tr>
+<tr><td>MaxHS</td><td>651</td><td>182.61</td></tr>
+<tr><td>maxino</td><td>639</td><td>99.14</td></tr>
+<tr><td>MSUSorting</td><td>622</td><td>171.96</td></tr>
+<tr><td>QMaxSATuc</td><td>573</td><td>165.19</td></tr>
+<tr><td>Z3<sup>&#x271D;</sup></td><td>570</td><td>187.51</td></tr>
+<tr><td>QMaxSAT</td><td>566</td><td>192.95</td></tr>
+<tr><td>LMHS</td><td>566</td><td>264.11</td></tr>
+<tr><td>Open-WBO-LSU</td><td>551</td><td>180.55</td></tr>
+<tr><td>CPLEX<sup>&#x271D;</sup></td><td>392</td><td>296.84</td></tr>
+</table>
+<sup>&#x271D;</sup> Non-competitive solver.
+
+
+<table class="noborder"><tr><td><script src="./unweighted.js"></script>
+<canvas id="unweighted_1" width=800 height=600 tabindex="0">
+    <div id='errorDiv'>Your browser does not support the HTML 5 canvas element</div>
+</canvas>
+<script>
+if (window.attachEvent) {window.attachEvent('onload', unweighted_1);}
+else if (window.addEventListener) {window.addEventListener('load', unweighted_1, false);}
+else {document.addEventListener('load', unweighted_1, false);}
+</script>
+    </td>
+    </tr></table>
+
+</center>
+
+
+
+</body>
+
+</html>

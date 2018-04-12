@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<title>MaxSAT Evaluation 2017</title>
+
+<script src="canvasmath.js"></script>
+<script src="gnuplot_common.js"></script>
+
+</head>
+<body oncontextmenu="return false;">
+  
+
+<h1>MaxSAT Evaluation 2017: Summary of Weighted Complete Track</h1>
+
+<p></p>
+
+<center>
+<table border="1">
+<tr><th>Solver</th><th>#Solved</th><th>Time(avg)</th></tr>
+<tr><td>MaxHS</td><td>538</td><td>236.46</td></tr>
+<tr><td>MaxHS-MSE16<sup>&#x271D;</sup></td><td>533</td><td>225.77</td></tr>
+<tr><td>QMaxSAT</td><td>503</td><td>385.18</td></tr>
+<tr><td>QMaxSATuc</td><td>499</td><td>397.82</td></tr>
+<tr><td>maxino</td><td>498</td><td>202.1</td></tr>
+<tr><td>Open-WBO-OLL</td><td>468</td><td>231.88</td></tr>
+<tr><td>Loandra-S</td><td>453</td><td>133.44</td></tr>
+<tr><td>Loandra-P</td><td>452</td><td>146.31</td></tr>
+<tr><td>LMHS</td><td>452</td><td>247.24</td></tr>
+<tr><td>Loandra-I</td><td>449</td><td>149.61</td></tr>
+<tr><td>Z3<sup>&#x271D;</sup></td><td>398</td><td>260.67</td></tr>
+<tr><td>Open-WBO-LSU</td><td>374</td><td>201.12</td></tr>
+<tr><td>CPLEX<sup>&#x271D;</sup></td><td>348</td><td>241.84</td></tr>
+</table>
+<sup>&#x271D;</sup> Non-competitive solver.
+
+<table class="noborder"><tr><td><script src="./weighted.js"></script>
+<canvas id="weighted_1" width=800 height=600 tabindex="0">
+    <div id='errorDiv'>Your browser does not support the HTML 5 canvas element</div>
+</canvas>
+<script>
+if (window.attachEvent) {window.attachEvent('onload', weighted_1);}
+else if (window.addEventListener) {window.addEventListener('load', weighted_1, false);}
+else {document.addEventListener('load', weighted_1, false);}
+</script>
+    </td>
+</tr></table>
+
+</body>
+</html>
+
+
+  
+</center>
+
+
+
+</body>
+
+</html>
