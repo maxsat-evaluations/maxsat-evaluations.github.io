@@ -53,10 +53,12 @@ will be ranked based on the number
 	  found by a given solver and the best solution found by all
 	  solvers.<br>Incomplete score:
      <br>&nbsp&nbsp&nbsp&#8721<sub>i &#8712
-	  instances solved by some solver</sub>&nbsp(cost of solution for i
-	  found by solver)<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp/ (cost of
-	  best solution for i found by any solver)
-	    </li>
+	  instances solved by some solver</sub>&nbsp(cost of
+    best solution for i found by any solver)<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp / (cost of solution for i
+    found by solver)
+      <br>For an instance i score is 0 if no solution was found by that solver.
+      <br>For each instance the incomplete score is a value in [0, 1].
+      </li>
 	    </ul>
     <li><b>Disqualification:</b> A solver will not be immediate
         disqualified if it displays a wrong solution during the

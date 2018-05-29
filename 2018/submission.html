@@ -44,7 +44,7 @@ July 9-12 &nbsp;  &middot; &nbsp; Oxford, UK<br><br></div>
 
 <p>
   Please follow the instructions given in the <a href="call-for-benchmarks.html">call for benchmarks</a>, and
-  submit benchmarks by email to <a href="mailto:maxsatevaluation18@gmail.com">maxsatevaluation18@gmail.com</a> using the subject title "MSE18 benchmark submission" by June 30 the latest.
+  submit benchmarks by email to <a href="mailto:maxsatevaluation18@gmail.com">maxsatevaluation18@gmail.com</a> using the subject title "MSE18 benchmark submission" by May 31 the latest.
   
   </p>
 
@@ -124,7 +124,7 @@ various parameter settings to your solver.
 
 <p><i>To upload your solver to StarExec</i><br>Login to the StarExec
   website and click Spaces->Explore (on the top) then in the left
-  frame open root->MaxSAT->MSE2018Testing At the bottom of page click
+  frame open root->MaxSAT->MSE2018->Testing At the bottom of page click
   "upload solver" to open the upload dialog.  Click "Browse" and
   select the archive with your solvers code, enter the solver name,
   change downloadable to "no" (so as to keep your source code hidden
@@ -135,17 +135,17 @@ various parameter settings to your solver.
   <h3>Testing your solver</h3>
 
  <p>
-  We put a few testing instances in the MSE2018Testing space which you can use after you uploaded your solver to this space. To run a test:
+  We put a few testing instances in the MSE2018->Testing->Complete and MSE2018->Testing->Incomplete spaces which you can use after you uploaded your solver to these spaces. To run a test:
 </p>
  <p>
-  Go to the root->MaxSAT->MSE2018Testing space.
+  Go to the root->MaxSAT->MSE2018->Testing->Complete->Weighted subspace (other subspaces exist for the Complete/Incomplete and Unweighted/Weighted combinations).
   Click "create job" on the bottom of the page. This opens a page where you don't need to change anything so just click "next"
-  On the next page select the "choose" option and then "all in MSE2018Testing"
+  On the next page select the "choose" option and then "all in MSE2018->Testing->Complete->Weighted"
   A page with all solvers (and their configurations) comes up, select the solver you want to run and click "submit" at the bottom of the page.
   You can check out the status and results of your test job by clicking on Jobs on the top and selecting your job.</p>
  
   <p><i>To check the output of your job and the correctness of your solution</i><br>
-  When creating a job, the post processor "MSE2018 Checker" is enabled by default. This checker will run on the output of your solver and will check if: (i) all hard clauses are satisfied, (ii) the solution provided in the 'v' line matches the value of the last 'o' line, (iii) the solution is larger or equal than the optimum solution. Once the job is finished, you can check the logs of your solver by downloading the "job output" in the job webpage. You can also download the "job information" that will contain a .csv file with a summary of your job. This .csv file will contain default attributes such as "benchmark id", "solver", "wallclock time", "memory usage" as well as checker attributes such as "optimum_solution",  "hard_clauses",  "optimum", "checker_solution",  "checker" and  "given_solution".  <b>If the column "checker" reports an error then it means that your solver has a bug that needs to be fixed before submission</b>. If this is the case, we recommend you to download the <a href="MSE2018-Checker.zip">checker</a> and run it offline on that benchmark for more details.
+  When creating a job, the post processor "MSE2017 Checker" is enabled by default. This checker will run on the output of your solver and will check if: (i) all hard clauses are satisfied, (ii) the solution provided in the 'v' line matches the value of the last 'o' line, (iii) the solution is larger or equal than the optimum solution. Once the job is finished, you can check the logs of your solver by downloading the "job output" in the job webpage. You can also download the "job information" that will contain a .csv file with a summary of your job. This .csv file will contain default attributes such as "benchmark id", "solver", "wallclock time", "memory usage" as well as checker attributes such as "optimum_solution",  "hard_clauses",  "optimum", "checker_solution",  "checker" and  "given_solution".  <b>If the column "checker" reports an error then it means that your solver has a bug that needs to be fixed before submission</b>. If this is the case, we recommend you to download the <a href="MSE2017-Checker.zip">checker</a> and run it offline on that benchmark for more details.
   </p>
 
   
@@ -155,7 +155,7 @@ various parameter settings to your solver.
  <h3>Uploading the final version of your solver</h3>
 
  <p>
-   The submission of the final version of a solver is essentially the same as uploading the solver for testing (see above). To submit the final version of your solver upload it to the space root->MaxSAT->MSE2018->[track], where [track] is one of Unweighted, Weighted, Incomplete-Unweighted, Incomplete-Weighted, No-restrictions, depending on the track you want to participate in. If you want to participate in several tracks upload your solver to each one of them separately.
+   The submission of the final version of a solver is essentially the same as uploading the solver for testing (see above). To submit the final version of your solver upload it to the space root->MaxSAT->MSE2018->Evaluation->[track], where [track] is one of Complete->Unweighted, Complete->Weighted, Incomplete->Unweighted, Incomplete->Weighted, depending on the track you want to participate in. If you want to participate in several tracks upload your solver to each one of them separately.
  </p>
 
  <p>
