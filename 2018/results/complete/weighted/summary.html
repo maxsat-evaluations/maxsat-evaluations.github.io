@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<title>MaxSAT Evaluation 2018</title>
+
+<script src="canvasmath.js"></script>
+<script src="gnuplot_common.js"></script>
+
+</head>
+<body oncontextmenu="return false;">
+  
+
+<h1>MaxSAT Evaluation 2018: Summary of Weighted Complete Track</h1>
+
+<p></p>
+
+<center>
+<table border="1">
+<tr><th>Solver</th><th>#Solved</th><th>Time(avg)</th></tr>
+<tr><td>RC2-B</td><td>421</td><td>256.02</td></tr>
+<tr><td>RC2-A</td><td>416</td><td>267.55</td></tr>
+<tr><td>MaxHS</td><td>390</td><td>274.87</td></tr>
+<tr><td>Pacose</td><td>390</td><td>348.98</td></tr>
+<tr><td>QMaxSAT</td><td>381</td><td>320.78</td></tr>
+<tr><td>maxino</td><td>373</td><td>250.98</td></tr>
+<tr><td>Open-WBO-Gluc</td><td>371</td><td>292.56</td></tr>
+<tr><td>Open-WBO-Riss</td><td>338</td><td>315.47</td></tr>
+<tr><td>LMHS</td><td>300</td><td>345.49</td></tr>
+</table>
+
+<table class="noborder"><tr><td><script src="./weighted.js"></script>
+<canvas id="weighted_1" width=800 height=600 tabindex="0">
+    <div id='errorDiv'>Your browser does not support the HTML 5 canvas element</div>
+</canvas>
+<script>
+if (window.attachEvent) {window.attachEvent('onload', weighted_1);}
+else if (window.addEventListener) {window.addEventListener('load', weighted_1, false);}
+else {document.addEventListener('load', weighted_1, false);}
+</script>
+    </td>
+</tr></table>
+
+</body>
+</html>
+
+
+  
+</center>
+
+
+
+</body>
+
+</html>
