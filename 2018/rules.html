@@ -51,15 +51,18 @@ will be ranked based on the number
 	  incomplete tracks will be ranked using a incomplete score that is
 	  computed by the sum of the ratios between the best solution
 	  found by a given solver and the best solution found by all
-	  solvers.<br>Incomplete score:
+	  solvers.
+    <ul>
+    <li>Incomplete score:
      <br>&nbsp&nbsp&nbsp&#8721<sub>i &#8712
 	  instances solved by some solver</sub>&nbsp(cost of
-    best solution for i found by any solver)<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp / (cost of solution for i
-    found by solver)
-      <br>For an instance i score is 0 if no solution was found by that solver.
-      <br>For each instance the incomplete score is a value in [0, 1].
+    best solution for i found by any solver + 1)<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp / (cost of solution for i
+    found by solver + 1)</li>
+      <li>For each instance we consider the best solution found by all incomplete solvers within 300 seconds.</li>
+      <li>For an instance i score is 0 if no solution was found by that solver.</li>
+      <li>For each instance the incomplete score is a value in [0, 1].</li>
+      </ul>
       </li>
-	    </ul>
     <li><b>Disqualification:</b> A solver will not be immediate
         disqualified if it displays a wrong solution during the
         execution of the evaluation. The organizers will aim to
@@ -71,20 +74,22 @@ will be ranked based on the number
         following circumstances.
       <ul>
         <li> The solver in either track reports a truth assignment in
-          a "v" line that does not satisfy the hard clauses.
+          a "v" line that does not satisfy the hard clauses.</li>
         <li> The solver in the main track reports "s OPTIMUM FOUND"
           but the truth assignment reported in its "v" line has cost
-          higher than another known solution.
+          higher than another known solution.</li>
         <li> The solver in either track reports a cost on its "o"
           that does not match the actual cost of the truth assignment
-          reported on the "v" line.
-        <li> The solver crashes on a significant number of instances.
+          reported on the "v" line.</li>
+        <li> The solver crashes on a significant number of instances.</li>
 	    </ul>
+
       If the solver's bug cannot be resolved, the submitters will
       still have the option of having the solver's correct results
       tabulated and reported in the table of results. However, the
       results will be marked to indicate that the solver also
       generated some incorrect results.
+    </li>
 
     <li><b>Withdrawal</b>: A solver can be withdrawn from the MaxSAT
     Evaluation 2018 only before the deadline for the submission of the
@@ -94,7 +99,7 @@ will be ranked based on the number
     reserve the right to restrict the number of solver submissions
     originating from the same author(s) based on computation resource
     limitations.</li>
-
+</ul>
     </p>
 
 <h2>Solver Submissions</h2>
