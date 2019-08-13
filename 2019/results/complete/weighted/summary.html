@@ -9,6 +9,9 @@
 <meta name="author" content="author"/> 
 <title>MaxSAT Evaluation 2019</title>
 
+<script src="canvasmath.js"></script>
+<script src="gnuplot_common.js"></script>
+
 </head>
 <body oncontextmenu="return false;">
   
@@ -32,10 +35,19 @@
 <tr><td>Open-WBO-ms</td><td>306</td><td>264.3</td></tr>
 </table>
 
+<body oncontextmenu="return false;">
+<table class="noborder"><tr><td><script src="./weighted.js"></script>
+<canvas id="weighted_1" width=800 height=600 tabindex="0">
+    <div id='errorDiv'>Your browser does not support the HTML 5 canvas element</div>
+</canvas>
+<script>
+if (window.attachEvent) {window.attachEvent('onload', weighted_1);}
+else if (window.addEventListener) {window.addEventListener('load', weighted_1, false);}
+else {document.addEventListener('load', weighted_1, false);}
+</script>
+
 </center>
-
-
-
 </body>
 
 </html>
+
