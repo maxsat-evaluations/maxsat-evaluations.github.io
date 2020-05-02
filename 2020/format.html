@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
- "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
 
 <head>
@@ -18,7 +18,7 @@
 <div class="inner-container">
 
 <div class="header">
-		
+                
 <div class="title">
 
 <span class="sitename"><a href="index.html"><font color="#00b386">MaxSAT Evaluation</font> <font color="#00ddaa">2020</font></a></span>
@@ -27,75 +27,47 @@
 </div>
 
 
-
 <div class="main">		
 
 <div class="content">
 
 <p></p>
 
-<p>
+<h1>Next Year’s change to the Input format.</h1>
+
+<b>Input Format:</b>
+Next year we will be changing the input format of the maxsat instances. This will require some change to your solver’s parser, but will make it easier to construct and submit new benchmark instances.
+<br>
+<br>
+The changes will be as follows:
 <ul>
-
-<h2>NEWS</h2>
-
-<p>
-  <ul>
-<li>May 2: <a href="format.html">Next year's change to the input format.</a>
-<li>May 2: <a href="vline.html">Changes to the v-line.</a>
-<li>May 2: <a href="incomplete.html">Update on the scoring scheme for incomplete track.</a>
-<li>May 2: <a href="topk.html">New track on finding top-k solutions.</a>
-<li>May 2: Solver and benchmark submission deadline set to <b>June 7</b>. This is a firm deadline for all solvers aiming to participate.
-<li>February 14: Preliminary webpage up, details to be announced - stay tuned!
-</li>
+  <li><b>No more p-line!</b> The p-line is a source of many problems when constructing benchmark files. There is some value for knowing how many variables and clauses there are in the formula before reading the clauses (e.g., for allocating fixed sized arrays). But even in this case the space required for storing the clauses would have to be dynamically reallocated as the clauses are read from the file.</li>
+<li><b>No more top.</b> As a consequence of removing the p-line there will no longer be a specification of a top value. Computing the correct value of top has proved to be error prone, and the standard value of top (the sum of the soft clause weights + 1) has issues with overflow. </li>
+<li><b>h lines.</b> In the new format hard clauses will be indicated with an in initial ‘h’ comming before the list of literals in the clause.</li>
+<li><b>Weights.</b> We preserve the change made in 2017 where all soft clauses must have a weight. So the first number in every soft clause will continue to denote its weight. </li>
 </ul>
-</p>
 
+<b>Example 1.</b>
+<br>
+Instance in the current format:
+<code>c This is a comment
+c Example 1...another comment
+p 7 4 12 
+12 1 2 3 4 0
+1 -3 -5 6 7 0
+6 -1 -2 0
+4 1 6 -7 0
+</code>
 
-<h2>About MSE 2020</h2>
+In new format 
+<code>c This is a comment
+c Example 1...another comment
+h 1 2 3 4 0
+1 -3 -5 6 7 0
+6 -1 -2 0
+4 1 6 -7 0
+</code>
 
-  <p>
-    The 2020 MaxSAT Evaluation (<b>MSE 2020</b>) is the 14th edition
-    of MaxSAT evaluations, the primary competition-style event
-    focusing on the evaluation of MaxSAT
-    solvers organized yearly since
-    2006.
-    </p>
-
-  <p>
-    The main goals of MaxSAT Evaluation 2020  are
-    <ol>
-      <li> to assess the state of the art in the field of MaxSAT
-        solvers,
-      <li> to collect and re-distribute a heterogeneous MaxSAT
-        benchmark set for further scientific evaluations, and
-      <li> to promote MaxSAT as a viable option for solving
-        instances of a wide range of NP-hard optimization problems.
-      </ol>
-    </p>
-  
-  <p>
-    <b>MSE 2020 welcomes contributions</b> of two types from the community at large:
-    <ol>
-      <li> New <b>MaxSAT benchmarks</b> encoding instances of
-        interesting NP-hard optimization problems, and
-      <li> implementations of <b>MaxSAT solvers</b> that will be
-        evaluated within MSE 2020 on a heterogeneous collection of
-        benchmarks.
-    </ol>
- </p>
-
-
-  <p><b>MSE 2020</b> is run
-     as a collaboration
-    between Carnegie Mellon University (USA), University of Helsinki (Finland), and University of Toronto (Canada).</p>
-
-
-	</tr></table>
-	</center>
-      </p>
-
-      
 </div>
 
 
@@ -151,6 +123,7 @@
 <div class="footer">
 
 <span class="right">
+
 
 </span>
 

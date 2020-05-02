@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
- "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
 
 <head>
@@ -18,7 +18,7 @@
 <div class="inner-container">
 
 <div class="header">
-		
+                
 <div class="title">
 
 <span class="sitename"><a href="index.html"><font color="#00b386">MaxSAT Evaluation</font> <font color="#00ddaa">2020</font></a></span>
@@ -27,75 +27,31 @@
 </div>
 
 
-
 <div class="main">		
 
 <div class="content">
 
 <p></p>
 
-<p>
-<ul>
+<h1>Change to the v-line</h1>
 
-<h2>NEWS</h2>
+For instances with millions of variables, the <b>v-line</b> occupies 10’s of millions of characters. In particular, each literal printed can require almost 10 characters. This poses a problem especially in the incomplete track where the solvers can return many v-lines (one for every solution found). 
+<br>
+<br>
+We propose to reduce that by a factor of 10 by having the v-line be a sequence of '0'/'1' characters one for each variable of the problem in order. For example
+<br>
+<br>
+<b>v-line</b> in the current format:
+<code>v -1 2 3 -4 5 6 -7 -8 -9 10 11 -12 -13 -14 15 16 17 18</code>
 
-<p>
-  <ul>
-<li>May 2: <a href="format.html">Next year's change to the input format.</a>
-<li>May 2: <a href="vline.html">Changes to the v-line.</a>
-<li>May 2: <a href="incomplete.html">Update on the scoring scheme for incomplete track.</a>
-<li>May 2: <a href="topk.html">New track on finding top-k solutions.</a>
-<li>May 2: Solver and benchmark submission deadline set to <b>June 7</b>. This is a firm deadline for all solvers aiming to participate.
-<li>February 14: Preliminary webpage up, details to be announced - stay tuned!
-</li>
-</ul>
-</p>
+<b>v-line</b> in new format:
+<code>v 011011000110001111</code>
 
+Note that the new format is positional---unlike the old format the variable values must be output in order.
+<br>
+<br>
+<b>This year solvers can use either the new or the previous format for their outputted v-lines.</b> We encourage solvers, particularly in the Top-K and incomplete tracks to use the new format. Next year, we will require the new format.
 
-<h2>About MSE 2020</h2>
-
-  <p>
-    The 2020 MaxSAT Evaluation (<b>MSE 2020</b>) is the 14th edition
-    of MaxSAT evaluations, the primary competition-style event
-    focusing on the evaluation of MaxSAT
-    solvers organized yearly since
-    2006.
-    </p>
-
-  <p>
-    The main goals of MaxSAT Evaluation 2020  are
-    <ol>
-      <li> to assess the state of the art in the field of MaxSAT
-        solvers,
-      <li> to collect and re-distribute a heterogeneous MaxSAT
-        benchmark set for further scientific evaluations, and
-      <li> to promote MaxSAT as a viable option for solving
-        instances of a wide range of NP-hard optimization problems.
-      </ol>
-    </p>
-  
-  <p>
-    <b>MSE 2020 welcomes contributions</b> of two types from the community at large:
-    <ol>
-      <li> New <b>MaxSAT benchmarks</b> encoding instances of
-        interesting NP-hard optimization problems, and
-      <li> implementations of <b>MaxSAT solvers</b> that will be
-        evaluated within MSE 2020 on a heterogeneous collection of
-        benchmarks.
-    </ol>
- </p>
-
-
-  <p><b>MSE 2020</b> is run
-     as a collaboration
-    between Carnegie Mellon University (USA), University of Helsinki (Finland), and University of Toronto (Canada).</p>
-
-
-	</tr></table>
-	</center>
-      </p>
-
-      
 </div>
 
 
@@ -151,6 +107,7 @@
 <div class="footer">
 
 <span class="right">
+
 
 </span>
 
