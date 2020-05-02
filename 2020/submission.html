@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<link rel="stylesheet" type="text/css" href="default.css" media="screen"/>
+<title>MaxSAT Evaluation 2020</title>
+</head>
+
+<body>
+
+<div class="outer-container">
+
+<div class="inner-container">
+
+<div class="header">
+                
+<div class="title">
+
+<span class="sitename"><a href="index.html"><font color="#00b386">MaxSAT Evaluation</font> <font color="#00ddaa">2020</font></a></span>
+<div class="slogan">Affiliated with <a href="https://sat2020.idea-researchlab.org">SAT 2020</a>  &nbsp;  &middot; &nbsp;  July 5-9 &nbsp;  &middot; &nbsp; Alghero, Italy<br><br></div>
+    </div>
+</div>
+
+
+<div class="main">		
+
+<div class="content">
+
+<p></p>
+
+<h1>Submission Instructions</h1>
+
+<p>
+</p>
+
+<h2>Benchmark Submissions</h2>
+
+<p>
+  Please follow the instructions given in the <a href="call-for-benchmarks.html">call for benchmarks</a>, and
+  submit benchmarks by email to <a href="mailto:maxsatevaluation@gmail.com">maxsatevaluation@gmail.com</a> using the subject title "MSE20 benchmark submission" by June 7 the latest.
+  
+  </p>
+
+<a name=solversubmission></a>
+<h2>Solver Submissions</h2>
+<p> Solvers need to be submitted by June 7 the latest. We encourage the participants to test
+their 
+solvers within the execution environment well in advance.
+MSE 2020 will be using the <b>StarExec</b> system which supports
+experimental evaluation of logic solvers. All interaction with
+StarExec is preformed via its web
+interface at <a href="https://www.starexec.org">https://starexec.org</a>
+
+
+To submit a solver you will need to prepare a zip or tar file (the
+suffix needs to be .zip, .tar, tar.gz, or .tgz) with the following
+file and directory structure
+<pre>
+./starexec_description.txt
+./bin/&#60your_solver_binary&#62
+./bin/starexec_run_default
+./code/&#60your_source_tree&#62
+./doc/&#60your_solver_description&#62.pdf
+</pre><br>
+
+<ul>
+  <li> ./starexec_description.txt is a short text description of our
+    solver (1204 characters max.). This file is optional; you can instead
+    enter the description directly in the upload page.
+  <li> ./bin/solver_binary is your executable.
+  <li> ./bin/starexec_run_default is a
+    StarExec <b>configuration</b>. It is just a shell script used to
+    invoke your solver. A bare bones version would be <br><br>
+<pre>
+#!/bin/bash
+./&#60your_solver_binary&#62 $1 
+</pre><br> which will invoke your solver on an input file passed into
+the script as the $1 variable. More elaborate versions might supply
+various parameter settings to your solver. 
+
+  <li>./code/ is where you place
+  your <a href="rules.html#source">source code</a> (which can be in a 
+    directory tree).
+    <li>./doc/ is where you place your <a href="rules.html#description">PDF formatted description</a> of
+    your solver.
+</ul>  
+
+<h2>Using StarExec</h2>
+
+<h3>Getting an account</h3>
+
+<p>
+  Register for an account in the MaSAT community (unless you are
+  already registered).  Wait until one of the MaxSAT community leaders
+  approves your request (this should not take more than 24h).</p>
+
+<h3>
+  Uploading a solver for testing</h3>
+
+<p>
+ A solver is submitted by uploading an archive as specified
+ above. Note however that StarExec runs an older version of Linux and
+ so dynamically linked binaries are likely to fail. A statically
+ linked binary should work.
+
+<p><i>Building your Solver on StarExec</i><br> Otherwise you can
+ modify your archive to include a build script, in which case your
+ solver will be built on the StarExec system on upload. To do this you
+ include a script "starexec_build" at the top level of your archive
+ file. On upload StarExec will detect if this file exists and execute
+ it to build your solver. Note that your archive must still include
+ the other files specified above (as well as, of course, any Make file
+ or other files you need to perform the build). It is also recommended
+ that your build create a static executable. See
+ the <a href="https://wiki.uiowa.edu/display/stardev/User+Guide">StarExec
+ Users Guide for more details</a>.
+
+<p><i>To upload your solver to StarExec</i><br>Login to the StarExec
+  website and click Spaces->Explore (on the top) then in the left
+  frame open root->MaxSAT->MSE2020->Testing At the bottom of page click
+  "upload solver" to open the upload dialog.  Click "Browse" and
+  select the archive with your solvers code, enter the solver name,
+  change downloadable to "no" (so as to keep your source code hidden
+  until the submission deadline is over) and click "upload".
+</p>
+
+<a name=testing></a>
+  <h3>Testing your solver</h3>
+
+ <p>
+  We put a few testing instances in the MSE2020->Testing->Complete and ->Testing->Incomplete spaces which you can use after you uploaded your solver to these spaces. To run a test:
+</p>
+ <p>
+  Go to the root->MaxSAT->MSE2020->Testing->Complete->Weighted subspace (other subspaces exist for the Complete/Incomplete and Unweighted/Weighted combinations).
+  Click "create job" on the bottom of the page. This opens a page where you don't need to change anything so just click "next"
+  On the next page select the "choose" option and then "all in MSE2020->Testing->Complete->Weighted"
+  A page with all solvers (and their configurations) comes up, select the solver you want to run and click "submit" at the bottom of the page.
+  You can check out the status and results of your test job by clicking on Jobs on the top and selecting your job.</p>
+ 
+  <p><i>To check the output of your job and the correctness of your solution</i><br>
+  When creating a job, the post processor "MSE2017 Checker" is enabled by default. This checker will run on the output of your solver and will check if: (i) all hard clauses are satisfied, (ii) the solution provided in the 'v' line matches the value of the last 'o' line, (iii) the solution is larger or equal than the optimum solution. Once the job is finished, you can check the logs of your solver by downloading the "job output" in the job webpage. You can also download the "job information" that will contain a .csv file with a summary of your job. This .csv file will contain default attributes such as "benchmark id", "solver", "wallclock time", "memory usage" as well as checker attributes such as "optimum_solution",  "hard_clauses",  "optimum", "checker_solution",  "checker" and  "given_solution".  <b>If the column "checker" reports an error then it means that your solver has a bug that needs to be fixed before submission</b>. If this is the case, we recommend you to download the <a href="MSE2017-Checker.zip">checker</a> and run it offline on that benchmark for more details.
+  </p>
+
+  
+
+ 
+
+ <h3>Uploading the final version of your solver</h3>
+
+ <p>
+   The submission of the final version of a solver is essentially the same as uploading the solver for testing (see above). To submit the final version of your solver upload it to the space root->MaxSAT->MSE2020->Evaluation->[track], where [track] is one of Complete->Unweighted, Complete->Weighted, Incomplete->Unweighted, Incomplete->Weighted, depending on the track you want to participate in. If you want to participate in several tracks upload your solver to each one of them separately.
+ </p>
+
+ <p>
+ Don't forget to select "downloadable:no" when uploading your solver to prevent other participants from seeing your source code before the start of the evaluation. <b>After the solver submission deadline we will ask all the participants to update the downloadable option to "downloadable:yes".</b> This will make the source code visible to the organizers and all the participants. The participants must comply with this request in order to participate in the evaluation.
+ </p>
+  
+ 
+</div>
+
+
+  <!-- NAVIGATION -->
+
+  
+<div class="navigation">
+
+<h2><b>Important Dates</b></h2>
+<ul>
+<li><a href="submission.html">Submissions: <span class="right">June 7</span></a></li><br>
+<li><a href="rankings.html">Results: <span class="right">at SAT'20</span></a></li>
+</ul>
+
+<h2><b>Calls</b></h2>
+<ul>
+  <li><a href="call-for-benchmarks.html">Call for Benchmarks</a></li>
+  <li><a href="call-for-solvers.html">Call for Solvers</a></li>
+  </ul>
+
+<h2><b>Participation</b></h2>
+<ul>
+  <li><a href="tracks.html">Tracks</a></li>
+  <li><a href="rules.html">Rules</a></li>
+  <li><a href="execution.html">Execution Environment</a></li>
+<li><a href="submission.html">Submissions</a></li>
+</ul>
+
+<h2><b>Results</b></h2>
+
+<ul>
+  <li><a href="rankings.html">Rankings and Data</a></li>
+  <li><a href="benchmarks.html">Benchmarks</a></li>
+  <li><a href="descriptions.html">Solvers</a></li>
+  </ul>
+  
+
+<h2><b>Further Information</b></h2>
+<ul>
+  <li><a href="organization.html">Organizers</a></li>
+<li><a href="history.html">History</a></li>
+</ul>
+
+</div>
+
+
+
+<div class="clearer">&nbsp;</div>
+
+
+
+
+<div class="footer">
+
+<span class="right">
+
+
+</span>
+
+<div class="clearer"></div>
+
+</div>
+
+
+
+
+</div>
+
+</div>
+
+</body>
+
+</html>

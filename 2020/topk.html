@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<link rel="stylesheet" type="text/css" href="default.css" media="screen"/>
+<title>MaxSAT Evaluation 2020</title>
+</head>
+
+<body>
+
+<div class="outer-container">
+
+<div class="inner-container">
+
+<div class="header">
+                
+<div class="title">
+
+<span class="sitename"><a href="index.html"><font color="#00b386">MaxSAT Evaluation</font> <font color="#00ddaa">2020</font></a></span>
+<div class="slogan">Affiliated with <a href="https://sat2020.idea-researchlab.org">SAT 2020</a>  &nbsp;  &middot; &nbsp;  July 5-9 &nbsp;  &middot; &nbsp; Alghero, Italy<br><br></div>
+    </div>
+</div>
+
+
+<div class="main">		
+
+<div class="content">
+
+<p></p>
+
+<h1>Top-k track</h1>
+
+<p></p>
+
+In some applications there is a need for diverse high-quality solutions. This often arises when some solution quality criteria which cannot be easily expressed in the objective function. In these cases it is useful for the solver to be able to generate multiple solutions from which one can be selected. In this track the input is a standardly encoded maxsat instances (*.wcnf file) along with an integer <b>k</b>. So you solver will be invoked with the command line like the following:
+
+<code>your_solver input_instance.wcnf 10</code>
+
+where in this example k = 10.
+
+<p>
+
+Your solver is expected to output k solutions (as v-lines where the true literal of every variable is listed) satisfying the following properties:
+<ul>
+<li>Each solution is a feasible solution of input_instance.wcnf, i.e., it must satisfy all hard clauses of input_instance.wcnf.</li>
+<li>Each solution must falsify a different set of soft clauses.</li>
+<li>Each solution must be an optimal solution among the set of solutions falsifying different soft clauses that remain.
+<p><p>
+More precisely, let S = {s | s is a feasible solution of input_instance.wcnf}; let s1, s2, …, si, be the sequence of first i solutions returned by your solver; and for any feasible solution s let sameSofts(s) be the subset of S consisting of all solutions that falsify the same set of solutions as s. 
+<p>
+Then it must be the case that the i+1’th solution returned, si+1, must have the lowest cost among the set of solutions S - (sameSofts(s1) U … U sameSofts(si) .</li>
+<li>Your solver should return an empty v-line (i.e., a line starting and ending with the character v) and exit if after returning i solutions there are no more feasible solutions. That is, when S - (sameSofts(s1) U … U sameSofts(si) is empty.</li>
+</ul>
+
+<b>Note.</b> As a consequence of these properties every solver should produce an identical sequence of solution costs (even though the individual solutions can vary),
+
+<p>
+<p>
+<b>Example 1.</b> Consider the maxsat instance
+<code>p 3 4 7
+1 -1 0
+2 -2 0
+3 -3 0
+7 1 2 3 0
+</code>
+
+Which corresponds to the soft clauses {(-1, wt=1), (-2, wt=2), (-3, wt=3)} and the single hard clause (1 2 3). With <b>k = 5</b> your solver should return the following sequence of <b>v-lines</b>
+<code>v 1 -2 -3
+v -1 2 -3
+v 1 2 -3
+v -1 -2 3
+V 1 -2 3
+</code>
+Note that solutions 3 and 4 both have cost 3 and so could be returned in either order. Note also that there are only 7 solutions satisfying different sets of soft clauses so if k > 7 your solver would return an empty v-line and terminate.
+<p>
+<b>Example 2.</b> With the maxsat instance 
+<code>p 6 7 4
+1 -1 -2 0
+2 -3 -4 
+4 -5 1
+4 -5 2
+4 -6 3
+4 -6 4
+4 5 6
+</code>
+
+With <b>k = 4</b> the first v-line returned by your solver should be one of the following: 
+<code>v 1 2 -3 -4 5 -6
+v 1 2 -3 4 5 -6
+or
+v 1 2 3 -4 5 -6
+</code>
+ 
+All of these solutions falsify the first soft clause and have cost 1,  
+
+The second v-line returned by your solver should be one of the following
+<code>v -1 -2 3 4 -5 6 
+v -1 2 3 4 -5 6 
+or
+v 1 -2 3 4 -5 6 
+</code>
+
+All of these solutions falsify the second soft clause and have cost 2,  
+The third solution returned by your solver should be:
+<code>v 1 2 3 4 5 6
+</code>
+This solution falsifies both soft clauses and has cost 3
+
+Finally, your solver should return the empty v-line
+<code>v
+</code> 
+indicating that no more different solutions can be found.
+
+<h1>Scoring:</h1>
+Since the Top-K track is experimental this year, we will use a simple scoring scheme to obtain an indication of solver performance on this task. The scoring scheme will be refined in future evaluations after consultation with the participants. In particular, this year the emphasis will be on the number of correct solutions returned rather than on the time required to find those solutions. (Solver efficiency will still play a role on instances where it is hard to find all k solutions). 
+<p>
+<p>
+For each instance a solver will receive a score of a/k where a is the number of correct solutions returned by the solver within the time bound, and k is the minimum of the number of solutions requested on the command line and the number of solutions actually available plus one. That is, in cases where the specified k is larger than the number of distinct solutions, we will count the final empty v-line as one of the valid solutions. 
+<p>
+If the solver returns an erroneous solution (e.g., a solution that is not the next optimal solution amongst the remaining distinct solutions as described above), that erroneous solution and all subsequent solutions will be discarded and not be counted in the sum of correct solutions a. 
+
+<p>
+<b>Example 3.</b> Consider the input instance specified in <b>example 2</b>, but with <b>k = 10</b>. This instance has only 3 distinct top-K solutions and one more for the final v-line, so the maximum number of correct <b>v-lines</b> that could be returned is 4. Suppose that solver <b>s</b> returns the following sequence of <b>v-lines</b>
+<ul>
+  <li>
+<code>v 1 2 3 -4 5 -6
+v 1 2 3 4 5 6
+</code>
+Then <b>s</b> would get a score of ¼ on this instance: the first <b>v-line</b> is correct it has cost 1. The second <b>v-line</b> is incorrect as it has cost 3 and there are solutions of cost 2.</li>
+<p>
+<li><code>v 1 2 -3 -4 5 -6
+v -1 2 3 4 -5 6
+</code>
+
+Then <b>s</b> would get a score of 2/4. As both <b>v-lines</b> are correct.</li>
+<p>
+
+<li><code>v 1 2 -3 -4 5 -6
+v -1 2 3 4 -5 6
+v 1 2 3 4 5 6
+v
+</code> 
+Then <b>s</b> would get a score of 4/4 if it was the only solver returning all 4 correct <b>v-lines</b></li>
+<p>
+</ul>
+
+
+</div>
+
+
+  <!-- NAVIGATION -->
+
+  
+<div class="navigation">
+
+<h2><b>Important Dates</b></h2>
+<ul>
+<li><a href="submission.html">Submissions: <span class="right">June 7</span></a></li><br>
+<li><a href="rankings.html">Results: <span class="right">at SAT'20</span></a></li>
+</ul>
+
+<h2><b>Calls</b></h2>
+<ul>
+  <li><a href="call-for-benchmarks.html">Call for Benchmarks</a></li>
+  <li><a href="call-for-solvers.html">Call for Solvers</a></li>
+  </ul>
+
+<h2><b>Participation</b></h2>
+<ul>
+  <li><a href="tracks.html">Tracks</a></li>
+  <li><a href="rules.html">Rules</a></li>
+  <li><a href="execution.html">Execution Environment</a></li>
+<li><a href="submission.html">Submissions</a></li>
+</ul>
+
+<h2><b>Results</b></h2>
+
+<ul>
+  <li><a href="rankings.html">Rankings and Data</a></li>
+  <li><a href="benchmarks.html">Benchmarks</a></li>
+  <li><a href="descriptions.html">Solvers</a></li>
+  </ul>
+  
+
+<h2><b>Further Information</b></h2>
+<ul>
+  <li><a href="organization.html">Organizers</a></li>
+<li><a href="history.html">History</a></li>
+</ul>
+
+</div>
+
+
+
+<div class="clearer">&nbsp;</div>
+
+
+
+
+<div class="footer">
+
+<span class="right">
+
+
+</span>
+
+<div class="clearer"></div>
+
+</div>
+
+
+
+
+</div>
+
+</div>
+
+</body>
+
+</html>
