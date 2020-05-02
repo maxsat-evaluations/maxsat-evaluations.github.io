@@ -117,7 +117,7 @@ will be ranked based on the number
     </l>
 
     <li><b>Withdrawal</b>: A solver can be withdrawn from the MaxSAT
-    Evaluation 2019 only before the deadline for the submission of the
+    Evaluation 2020 only before the deadline for the submission of the
     final versions. After this deadline no further changes or
     withdrawals of the solvers are possible.</li>
     <li><b>Number of solver submissions</b>: The evaluation organizers
@@ -221,7 +221,7 @@ Solver source code originating
   with a corresponding solver binary that can be directly run on
   StarExec. The source code package of each solver participating in
   the evaluation will be made available at the time when the MaxSAT
-  Evaluation 2019 results are presented at the SAT 2019 conference. In
+  Evaluation 2020 results are presented at the SAT 2020 conference. In
   case bug fixes are submitted during the evaluation (i.e., if
   requested by the evaluation organizers), the bug-fixed source
   package must also be submitted together with a bug-fixed solver
@@ -232,14 +232,14 @@ Solver source code originating
   clearly specified in the solver description.</i></li>
 <a name=description></a>
 <li><b>Solver description</b>:
-    Each entrant to the MaxSAT Evaluation 2019 <b>must include</b> a short (at least 1, at most 2 pages) description of the system.
+    Each entrant to the MaxSAT Evaluation 2020 <b>must include</b> a short (at least 1, at most 2 pages) description of the system.
     This should include a list of all authors of the system and their present institutional
     affiliations.
     It should also provide details of any non-standard algorithmic techniques (e.g., heuristics, simplification/learning techniques, etc.)
     and data structures, as well as references to relevant literature (be they by the authors themselves or by others).
     
     The system description must be formatted in <a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html">IEEE Proceedings style</a>, and submitted as PDF.
-    The system descriptions will be posted on the MaxSAT Evaluation 2019 website.
+    The system descriptions will be posted on the MaxSAT Evaluation 2020 website.
     Furthermore, given that the quality and number of system descriptions is
     high enough, the organizers are considering publishing the collection of
     system description as a report under the report series of Department of
@@ -252,7 +252,7 @@ Solver source code originating
   <p>
     <ul>
       <li>The benchmark sets used in the evaluation will consists of both instances appearing in the earlier MaxSAT evaluation benchmark sets as well as new unseen benchmarks.</li>
-      <li>The set of benchmarks used in the evaluation will be revealed only after the results from the evaluation are presented at the SAT 2019 conference</li>
+      <li>The set of benchmarks used in the evaluation will be revealed only after the results from the evaluation are presented at the SAT 2020 conference</li>
       <li>The number of benchmarks used in the evaluation is not predetermined.</li>
       <li>The benchmark selection procedures used consists of two steps. 1. The organizers will divide accessible benchmarks into buckets consisting of "similar" benchmark instances (e.g., originating from the same or similar problem domain). 2. Benchmarks will be drawn randomly one-by-one from each of the buckets, so that a balanced number of benchmarks over the buckets is obtained.</li>
       <li><b>The organizers are allowed to enter their own solvers
@@ -270,7 +270,7 @@ Solver source code originating
 <p>
         <pre>./mysolver &#060;input_file_name&#062;</pre>
    </p>     
-        <p>In MaxSAT Evaluation 2019, the same input format is used
+        <p>In MaxSAT Evaluation 2020, the same input format is used
         for all benchmark instances. The parameters line is "p
         wcnf <i>nbvar</i> <i>nbclauses</i> <i>top</i>". We associate a
         weight with each clause, which is the first integer in the
@@ -284,6 +284,8 @@ Solver source code originating
 <p>
         <pre>c<br>c comment line<br>c<br>p wcnf 4 5 16<br>16 1 -2 4 0<br>16 -1 -2 3 0<br>8 -2 -4 0<br>4 -3 2 0<br>3 1 3 0</pre>
 </p>
+
+<b>Note:</b> Input format will be changing starting next year. Look at the <a href="format.html">Next Year’s change to the Input format</a> section for more details.
 <a name=output></a>
         <h2>Output format</h2>
         <p>The solvers must output messages to standard output that
@@ -400,7 +402,8 @@ Solver source code originating
         <h3>Example</h3>
         <pre>c --------------------------<br>c My MaxSAT Solver<br>c --------------------------<br>o 143<br>s OPTIMUM FOUND<br>v -1 2 3 -4 -5 6 -7 8 9 10 -11 -12 13 -14 -15 16 -17 18 19 20</pre>
 
-
+<br>
+<b>Note:</b> Consider changes to the <b>v-line</b> for a more compressed certificate. Details are available in the <a href="vline.html">v-line section</a>. These changes are optional for this year but can have reduce time for printing and will significantly reduce log sizes.
 
 </div>
 
