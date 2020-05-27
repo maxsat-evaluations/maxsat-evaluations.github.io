@@ -62,7 +62,7 @@ Then it must be the case that the i+1’th solution returned, si+1, must have th
 <p>
 <p>
 <b>Example 1.</b> Consider the maxsat instance
-<code>p 3 4 7
+<code>p wcnf 3 4 7
 1 -1 0
 2 -2 0
 3 -3 0
@@ -79,14 +79,14 @@ V 1 -2 3
 Note that solutions 3 and 4 both have cost 3 and so could be returned in either order. Note also that there are only 7 solutions satisfying different sets of soft clauses so if k > 7 your solver would return an empty v-line and terminate.
 <p>
 <b>Example 2.</b> With the maxsat instance 
-<code>p 6 7 4
+<code>p wcnf 6 7 4
 1 -1 -2 0
-2 -3 -4 
-4 -5 1
-4 -5 2
-4 -6 3
-4 -6 4
-4 5 6
+2 -3 -4 0
+4 -5 1 0
+4 -5 2 0
+4 -6 3 0
+4 -6 4 0
+4 5 6 0
 </code>
 
 With <b>k = 4</b> the first v-line returned by your solver should be one of the following: 
