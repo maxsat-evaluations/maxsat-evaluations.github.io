@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<title>MaxSAT Evaluation 2020</title>
+
+<script src="canvasmath.js"></script>
+<script src="gnuplot_common.js"></script>
+
+</head>
+<body oncontextmenu="return false;">
+  
+
+<h1>MaxSAT Evaluation 2020: Summary of Weighted Complete Track</h1>
+
+<p></p>
+
+
+<center>
+<table border="1">
+<tr><th>Solver</th><th>#Solved</th><th>Time(avg)</th></tr>
+<tr><td>UWrMaxSat</td><td>436</td><td>148.97</td></tr>
+<tr><td>MaxHS</td><td>434</td><td>184.69</td></tr>
+<tr><td>RC2-B</td><td>417</td><td>205.88</td></tr>
+<tr><td>RC2-A</td><td>411</td><td>185.92</td></tr>
+<tr><td>maxino</td><td>393</td><td>203.21</td></tr>
+<tr><td>Pacose</td><td>385</td><td>197.83</td></tr>
+<tr><td>QMaxSAT</td><td>377</td><td>281.47</td></tr>
+<tr><td>maxino-pref</td><td>375</td><td>162.1</td></tr>
+<tr><td>smax_minisat</td><td>339</td><td>182.94</td></tr>
+<tr><td>smax_mergesat</td><td>282</td><td>293.93</td></tr>
+</table>
+
+<body oncontextmenu="return false;">
+<table class="noborder"><tr><td><script src="./weighted.js"></script>
+<canvas id="weighted_1" width=800 height=600 tabindex="0">
+    <div id='errorDiv'>Your browser does not support the HTML 5 canvas element</div>
+</canvas>
+<script>
+if (window.attachEvent) {window.attachEvent('onload', weighted_1);}
+else if (window.addEventListener) {window.addEventListener('load', weighted_1, false);}
+else {document.addEventListener('load', weighted_1, false);}
+</script>
+
+</center>
+</body>
+
+</html>
+
