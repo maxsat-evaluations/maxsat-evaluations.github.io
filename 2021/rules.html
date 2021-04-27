@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<link rel="stylesheet" type="text/css" href="default.css" media="screen"/>
+<title>MaxSAT Evaluation 2021</title>
+</head>
+
+<body>
+
+<div class="outer-container">
+
+<div class="inner-container">
+
+<div class="header">
+                
+<div class="title">
+
+<span class="sitename"><a href="index.html"><font color="#00b386">MaxSAT Evaluation</font> <font color="#00ddaa">2021</font></a></span>
+<div class="slogan">Affiliated with <a href="https://static-webs.doc.iiia.csic.es/sat2021/">SAT 2021</a>  &nbsp;  &middot; &nbsp;  July 5-9 &nbsp;  &middot; &nbsp; Barcelona, Spain<br><br></div>
+    </div>
+</div>
+
+
+
+<div class="main">		
+
+<div class="content">
+
+<p></p>
+
+<h1>Rules</h1>
+
+<h2>General</h2>
+
+<p>
+  <ul>
+    <li><b>Ranking</b>:
+      <ul>
+	<li><i>Main tracks</i>: Solvers 
+will be ranked based on the number
+	of solved instances within predefined per-instance resource
+	limitations. In the main tracks and the no-restrictions track solving an instance means finding
+	an optimal solution.</li>
+	<li><i>Incomplete track:</i> Solvers participating in the
+	  incomplete tracks will be ranked using a incomplete score that is
+	  computed by the sum of the ratios between the best solution
+	  found by a given solver and the best solution found by all
+	  solvers. This year we propose to use the <b>best known cost</b> for each instance, which is the cost of the currently best known solution for the instance (difference is highlighted below in bold). More details about this change can be found in the <a href="incomplete.html">incomplete track score</a> section.
+    <ul>
+    <li>Incomplete score:
+     <br>&nbsp&nbsp&nbsp&#8721<sub>i &#8712
+	  instances solved by some solver</sub>&nbsp(<b>cost of best known cost for i</b> + 1)<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp / (cost of solution for i
+    found by solver + 1)</li>
+      <li>For each instance we consider the best solution found by all incomplete solvers within 300 seconds.</li>
+      <li>For an instance i score is 0 if no solution was found by that solver.</li>
+      <li>For each instance the incomplete score is a value in [0, 1].</li>
+      </ul>
+
+      <i>The organizers reserve the right to use additional scoring metrics for the evaluation results, such as ones which take into account search progress in terms of improvements to the cost of best solution found as a function of time.</i>
+
+<li><i>Top-k track:</i> Solvers participating in the top-k track will be ranked by the average number of solutions found. More details are available in the <a href="topk.html">top-k track details</a>.
+  <ul>
+  <li> Top-k score:
+    <br>&nbsp&nbsp&nbsp&#8721<sub>i &#8712
+    instances solved by solver <b>s</b></sub>&nbsp(number of solutions found by solver <b>s</b>) / <b>k</b></li>
+      <li>For each instance the top-k score is a value in [0, 1].</li>
+  </ul>
+</li>
+
+      </li>
+    <li><b>Disqualification:</b> A solver will not be immediate
+        disqualified if it displays a wrong solution during the
+        execution of the evaluation. The organizers will aim to
+        provide all participants a fair chance of submitting bug fixes
+        to their solvers in a timely manner based on feedback on wrong
+        results. However, the organizers reserve the right to limit
+        the number of resubmissions of a buggy solver based on
+        resource limitations.  A solver is considered buggy under the
+        following circumstances.
+      <ul>
+        <li> The solver in either track reports a truth assignment in
+          a "v" line that does not satisfy the hard clauses.</li>
+        <li> The solver in the main track reports "s OPTIMUM FOUND"
+          but the truth assignment reported in its "v" line has cost
+          higher than another known solution.</li>
+        <li> The solver in either track reports a cost on its "o"
+          that does not match the actual cost of the truth assignment
+          reported on the "v" line.</li>
+        <li> The solver crashes on a significant number of instances.</li>
+	    </ul>
+
+      If the solver's bug cannot be resolved, the submitters will
+      still have the option of having the solver's correct results
+      tabulated and reported in the table of results. However, the
+      results will be marked to indicate that the solver also
+      generated some incorrect results.
+    </li>
+
+
+    <li><b>Per-instance Solver Tuning:</b>: Embedding strategies
+      specific to particular instances in the solver is considered to
+      be against the spirit of the evaluation which aims to encourage
+      the advancement of MaxSat solvers with wide coverage and general
+      applicability. Hence solvers are not allowed to employ triggers
+      to modify their behaviour, that are deemed to be specific to
+      particular instances. The final ruling on whether or not a
+      solver is using instance specific tuning will be made on a
+      case-by-case basis by the organizers, but only after further
+      consultation with the solver developers. Participants are
+      encouraged to consult the organizers in case of doubt.
+    </l>
+
+    <li><b>Withdrawal</b>: A solver can be withdrawn from the MaxSAT
+    Evaluation 2021 only before the deadline for the submission of the
+    final versions. After this deadline no further changes or
+    withdrawals of the solvers are possible.</li>
+    <li><b>Number of solver submissions</b>: The evaluation organizers
+    reserve the right to restrict the number of solver submissions
+    originating from the same author(s) based on computation resource
+    limitations.</li>
+</ul>
+    </p>
+
+<h2>Solver Submissions</h2>
+
+<p>Each solver submission must adhere to the following specification.
+<ul>
+<li><b>Input and output format</b>: Solvers must accept as input
+MaxSAT instances in <a href="#input">the standard WCNF format</a>, and
+conform to <a href="#output">the output format specified
+here</a>.
+<a name=sigterm></a>
+<li><b>SIGTERM:</b> At the time limit solvers will receive a SIGTERM
+  signal shortly before being forcibly terminated by a SIGKILL signal.
+  <p>Incomplete solvers must catch the SIGTERM signal at which point
+  they can output the best solution they have found so far with a "o"
+  and "v" line (if a solution has been found), and then
+  terminate. 
+
+  <p>Exact solvers in the main track, only need to output an optimal
+  solution, and can terminate after finding and outputting one. So
+  there is no real need for them to catch the SIGTERM signal as no score is
+  associated with outputting the best solution found if that solution
+  is not optimal.</p>
+
+  <p><i>Catching the SIGTERM signal on StarExec</i><br> StarExec is
+  currently sending a SIGTERM followed by a SIGKILL signal with
+  minimal delay. The time gap between SIGTERM and SIGKILL might not be
+  sufficient for your program to output its best solution. But we
+  suggest you try that first making sure to assemble all output before
+  finally flushing the output stream (multiple flush commands will
+  take more time). 
+
+  To address this issue we are in the process of incorporating a
+  longer delay to the StarExec platform that should be sufficient for
+  your program to complete its output.
+
+  In the meantime, if you want to test that your solver is properly
+  catching SIGTERM and then outputting its best solution, and have
+  found that StarExec's delay is too short then we can suggest two
+  other methods.
+
+  <ol>
+  <li><b>Include the "runsolver" tool in your solver package.</b>
+  <a href="https://www.cril.univ-artois.fr/~roussel/runsolver/runsolver-3.3.5.tar.bz2">runsolver</a>
+  is a tool to control the memory and runtime of a solver. After
+  downloading and statically compiling "runsolver", you can include
+  "runsolver" in your bin directory when uploading your solver to
+  StarExed. Then you can change your StarExec configuration script
+  (see <a href="submission.html#solversubmission"> solver
+  submission</a>) so that runs your solver under "runsolver"'s control
+  as follows:
+
+  <pre>
+  #!/bin/bash
+  delay=3
+  cpu=$(($STAREXEC_CPU_LIMIT-$delay-1))
+  wl=$(($STAREXEC_WALLCLOCK_LIMIT-$delay-1))
+
+  ./runsolver -d $delay -C $cpu -W $wl -v out.v -w out.w ./&#60your_solver_binary&#62 $1
+  </pre><br> which will send a SIGTERM signal and after the "delay"
+  (in this case 3 seconds) will send a SIGKILL signal to your
+  solver. To verify if your solver is receiving the SIGTERM signal
+  properly, we suggest that you try using "runsolver" offline and
+  verify that your solver is receiving and outputting a solution when
+  a SIGTERM signal is sent.
+  </p>
+
+  <li> <b>Run your solver using the linux "timeout" command.</b>
+    Again you would modify your StarExec configuration script, but
+    this time there is no need to upload runsolver. Instead you invoke your solver as follows:
+
+<pre>
+#!/bin/bash
+delay=3
+wl=$(($STAREXEC_WALLCLOCK_LIMIT-$delay))
+timeout -s 15 &#60wl&#62 ./&#60your_solver_binary&#62 $1 
+</pre><br>Where &#60wl&#62 is the runtime for your solver
+minus the delay in seconds that you want to have between SIGTERM and
+SIGKILL (when you create a StarExec job set the job's timeout to be
+greater than &#60delay&#62). This will cause the system to
+send your solver a SIGTERM signal after &#60delay&#62 seconds,
+after which StarExec will terminate your solver at its timeout.
+</ol>
+</li>
+
+<a name=source></a>
+<li><b>Use of Processor Cores</b>: In each track, solvers much use only 
+a single core of the processor on the computing node it is run on.
+Solvers making use of multiple cores (for parallel computations) will be disqualified.
+<li><b>Open source requirement</b> for the <i>Main and Incomplete Tracks</i>: 
+Solver source code originating
+  from the authors (including modifications to third-party source code
+  such as SAT solvers as part of a solver) must be submitted together
+  with a corresponding solver binary that can be directly run on
+  StarExec. The source code package of each solver participating in
+  the evaluation will be made available at the time when the MaxSAT
+  Evaluation 2021 results are presented at the SAT 2021 conference. In
+  case bug fixes are submitted during the evaluation (i.e., if
+  requested by the evaluation organizers), the bug-fixed source
+  package must also be submitted together with a bug-fixed solver
+  binary.  <i>A solver is allowed to use external binaries of
+  unmodified third-party libraries. Source code need not be submitted
+  for such libraries. However, if the library is non-standard (i.e.,
+  not STL, Boost, etc.) its identity and usage in the solver should be
+  clearly specified in the solver description.</i></li>
+<a name=description></a>
+<li><b>Solver description</b>:
+    Each entrant to the MaxSAT Evaluation 2021 <b>must include</b> a short (at least 1, at most 2 pages) description of the system.
+    This should include a list of all authors of the system and their present institutional
+    affiliations.
+    It should also provide details of any non-standard algorithmic techniques (e.g., heuristics, simplification/learning techniques, etc.)
+    and data structures, as well as references to relevant literature (be they by the authors themselves or by others).
+    
+    The system description must be formatted in <a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html">IEEE Proceedings style</a>, and submitted as PDF.
+    The system descriptions will be posted on the MaxSAT Evaluation 2021 website.
+    Furthermore, given that the quality and number of system descriptions is
+    high enough, the organizers are considering publishing the collection of
+    system description as a report under the report series of Department of
+    Computer Science, University of Helsinki (with an ISSN number).
+</ul>
+</p>
+
+<h2>Benchmarks</h2>
+
+  <p>
+    <ul>
+      <li>The benchmark sets used in the evaluation will consists of both instances appearing in the earlier MaxSAT evaluation benchmark sets as well as new unseen benchmarks.</li>
+      <li>The set of benchmarks used in the evaluation will be revealed only after the results from the evaluation are presented at the SAT 2021 conference</li>
+      <li>The number of benchmarks used in the evaluation is not predetermined.</li>
+      <li>The benchmark selection procedures used consists of two steps. 1. The organizers will divide accessible benchmarks into buckets consisting of "similar" benchmark instances (e.g., originating from the same or similar problem domain). 2. Benchmarks will be drawn randomly one-by-one from each of the buckets, so that a balanced number of benchmarks over the buckets is obtained.</li>
+      <li><b>The organizers are allowed to enter their own solvers
+      into the evaluation.</b> To avoid providing them with any
+      advantage over other participants (a) the composition of the
+      buckets will be made public, and (b) the organizers will have
+      no influence on the seed used for the random process that
+      chooses the instances.
+      </ul>
+    </p>
+
+<a name=input></a>
+        <h2>Input format</h2>
+        <p>The input file must be read from the file given as a parameter to your solver. For example:</p>
+<p>
+        <pre>./mysolver &#060;input_file_name&#062;</pre>
+   </p>     
+        <p>In MaxSAT Evaluation 2021, the same input format is used
+        for all benchmark instances. The parameters line is "p
+        wcnf <i>nbvar</i> <i>nbclauses</i> <i>top</i>". We associate a
+        weight with each clause, which is the first integer in the
+        clause. Weights must be greater than or equal to 1, and
+        smaller than 2<sup>63</sup>. The sum of the weights must be
+        less than 2<sup>64</sup>-1. Hard clauses have
+        weight <i>top</i> and soft clauses have a weight smaller
+        than <i>top</i>. <i>top</i> will always be greater than the
+        sum of the soft clause weights.</p>
+        <p>Example:</p>
+<p>
+        <pre>c<br>c comment line<br>c<br>p wcnf 4 5 16<br>16 1 -2 4 0<br>16 -1 -2 3 0<br>8 -2 -4 0<br>4 -3 2 0<br>3 1 3 0</pre>
+</p>
+
+<b>Note:</b> Input format will be changing starting next year. Look at the <a href="format.html">Next Year’s change to the Input format</a> section for more details.
+<a name=output></a>
+        <h2>Output format</h2>
+        <p>The solvers must output messages to standard output that
+        will be used to check the results. The output format is
+        inspired by the DIMACS output specification of the SAT
+        competition and will be used to check some results.</p>
+        <p> The solver cannot write to any files except standard output and standard error (only standard output will be parsed for results, but both output and error will be memorized during the whole evaluation process, for all executions).</p>
+        <h3>Messages</h3>
+        <ul>
+            <li>
+                <strong>Comments ("c " lines):</strong><br>
+                These lines start by the two characters: lower case 'c' followed by a space (ASCII code 32).<br>
+                These lines are optional and may appear anywhere in the solver output.<br>
+                They contain any information that authors want to emphasize, such as #backtracks, #flips,... or internal cpu-time.<br>
+                Submitters are advised to avoid outputting comment lines which may be useful in an interactive environment but otherwise useless in a batch environment.<br>
+            </li>
+            <br>
+              <li>
+                <strong>Solution Status ("s " line):</strong><br> This
+                line starts by the two characters: lower case 's'
+                followed by a space (ASCII code 32).<br>  Only one
+                such line is allowed.<br> This line gives the answer
+                of the solver. It must be one of the following
+                answers:
+                <ul>
+                    <li>
+                        <pre>s OPTIMUM FOUND</pre> This line is to
+                        output when the solver has checked that the
+                        last "o" and "v" lines specify an optimal
+                        solution.<br>
+                    <li>
+                      <pre>s UNSATISFIABLE</pre> This line is to be
+                      output when the solves has checked that the
+                      set of hard clauses is unsatisfiable.
+                    </li>
+                    <li>
+                      <pre>s UNKNOWN</pre> This line must be output in
+                      any other case. Note that solvers in the
+                      incomplete track will typically output "s
+                      UNKNOWN" unless they can verify that the best
+                      solution they have found is optimal, in which
+                      case they can output "s OPTIMUM FOUND". However,
+                      no extra score will be associated in the
+                      incomplete track for proving optimality. Exact
+                      solvers in the main track can output "s UNKNOWN"
+                      if they are unable to find a optimal solution
+                      (note that not outputting an "s" line is the
+                      same as outputting "s UNKNOWN") <br>
+                      </li>
+               </ul>
+                    <p>It is of uttermost importance to respect the exact
+                      spelling of these answers. Any mistake in the writing
+                      of these lines will cause the answer to be
+                      disregarded.</p>
+                    <p> If the solver does not display a "s" line (or
+                      if the "s" is not valid), then UNKNOWN will be
+                      assumed.</p>
+                        </li>
+
+            <li>
+              <strong>Solution Cost Line ("o " lines):</strong><br>
+                These lines start by the two characters: lower case
+                'o' followed by a space (ASCII code 32).<br>  An "o "
+                line must contain the lower case 'o' followed by a
+                space and then by an integer which represents the cost
+                of the best solution found, i.e., the sum of the
+                weights of clauses falsified by the solution.<br>
+                    
+                Incomplete solvers should field the SIGTERM signal so
+                as to output an "o" (and "v") line specifying the best
+                solution found just before termination. There is no
+                need for exact solvers in the main track to output any
+                solution other than an optimal one. When they find an
+                optimal solution they can output an "o" and "v" line
+                specifying the solution they found. <br>
+            </li>
+            <br>
+                        <br>
+            <li>
+                <strong>Solution Values (Truth Assignment) ("v "
+                lines):</strong><br> These lines start by the two
+                characters: lower case 'v' followed by a space (ASCII
+                code 32).<br>  More than one "v " line is allowed but
+                the evaluation environment will act as if their
+                content was merged.<br>  When the solver reports a
+                solution it must provide "s", "o" and "v" lines. The
+                "v" line provides a truth assignment to the variables
+                of the instance that will be used to check the
+                correctness of the answer, i.e., it must provide a
+                list of non-complementary literals which, when
+                interpreted as true, achieves a sum of weights of
+                unsatisfied clauses as specified in the "o" line.<br>
+                A literal is denoted by an integer that identifies the
+                variable and the negation of a literal is denoted by a
+                minus sign immediately followed by the integer of the
+                variable.<br>  The solution line must define the value
+                of each variable. The order of literals does not
+                matter.<br>  If the solver does not output a value
+                line, or if the value line does not match the
+                specification, then UNKNOWN will be assumed.
+            </li>
+        </ul>
+        All the lines must be ended by a standard Unix end of line character ('\n');
+        <p><b>Multiple "o" lines</b><br> Although the solver can
+            output a new "o" line every time it finds a better
+            solution, there is no score associated with doing so. Only
+            one "s" line is allowed and all "v" lines are merged,
+            hence only one truth assignment can be
+            specified. Therefore, the intermediate "o" lines cannot be
+            verified by information in the output and will be ignored
+            in the evaluation. Only the last "o" line will be used
+            (and it must match the data specified in the "v" line).
+
+        <h3>Example</h3>
+        <pre>c --------------------------<br>c My MaxSAT Solver<br>c --------------------------<br>o 143<br>s OPTIMUM FOUND<br>v -1 2 3 -4 -5 6 -7 8 9 10 -11 -12 13 -14 -15 16 -17 18 19 20</pre>
+
+<br>
+<b>Note:</b> Consider changes to the <b>v-line</b> for a more compressed certificate. Details are available in the <a href="vline.html">v-line section</a>. These changes are optional for this year but can have reduce time for printing and will significantly reduce log sizes.
+
+</div>
+
+
+
+
+  <!-- NAVIGATION -->
+
+  
+<div class="navigation">
+
+<h2><b>Important Dates</b></h2>
+<ul>
+<li><a href="submission.html">Submissions: <span class="right"><br>June 15<br></span></a></li><br>
+<li><a href="rankings.html">Results: <span class="right">at SAT'21</span></a></li>
+</ul>
+
+<h2><b>Calls</b></h2>
+<ul>
+  <li><a href="call-for-benchmarks.html">Call for Benchmarks</a></li>
+  <li><a href="call-for-solvers.html">Call for Solvers</a></li>
+  </ul>
+
+<h2><b>Participation</b></h2>
+<ul>
+  <li><a href="tracks.html">Tracks</a></li>
+  <li><a href="rules.html">Rules</a></li>
+  <li><a href="execution.html">Execution Environment</a></li>
+<li><a href="submission.html">Submissions</a></li>
+</ul>
+
+<h2><b>Results</b></h2>
+
+<ul>
+  <li><a href="rankings.html">Rankings and Data</a></li>
+  <li><a href="benchmarks.html">Benchmarks</a></li>
+  <li><a href="descriptions.html">Solvers</a></li>
+  </ul>
+  
+
+<h2><b>Further Information</b></h2>
+<ul>
+  <li><a href="organization.html">Organizers</a></li>
+<li><a href="history.html">History</a></li>
+</ul>
+
+</div>
+
+
+
+<div class="clearer">&nbsp;</div>
+
+
+
+
+<div class="footer">
+
+<span class="right">
+
+<a href="http://templates.arcsin.se">Website template</a> modified from a design by <a href="http://arcsin.se">Arcsin</a>
+
+</span>
+
+<div class="clearer"></div>
+
+</div>
+
+
+
+
+</div>
+
+</div>
+
+</body>
+
+</html>
