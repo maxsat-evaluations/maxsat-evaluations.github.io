@@ -109,6 +109,36 @@ Artificial Intelligence 241:45-65, 2016.
  <a href="https://github.com/biotomas/ipasir">https://github.com/biotomas/ipasir</a>.
   </p>
 
+
+<h2>Solver Submissions to the Incremental Track</h2>
+
+<p>
+To submit a solver to the incremental track, implement a subset of functions defined in the IPAMIR header file as described in the comments of the header file.
+If your solver does not provide support for a particular function, the solver state must be changed to ERROR.
+Place your solver into a directory named after the solver. Issuing make in this directory must result in a successful build of the solver as a static library.
+Please see the maxsat/solver2022 directory in <a href="https://bitbucket.org/coreo-group/ipamir">the IPAMIR repository</a> for an example (non-incremental) solver.
+Submit your solver as a single zip or gzipped tar package via email to <a href="mailto:maxsatevaluation@gmail.com">maxsatevaluation@gmail.com</a> using the subject title "MSE22 solver submission" <b>by May 15 the latest</b>.
+</p>
+
+
+<h2>Incremental Track Rankings and Correctness</h2>
+
+<p>(See also the <a href="rules.html">general rules</a>.)
+  In the incremental track, all solvers will be ranked on each benchmark application independently. For a specific benchmark application, the rank of a solver is determined by the number of solved instances for that benchmark. Solving an instance means that all invocations of the solver are correct, i.e. correctly return either OPTIMUM FOUND or UNSAT as specified in the IPAMIR header.
+</p>
+
+<p>Following the ideals of the evaluations and taking also into account the fact
+  that the incremental track is now organized for the first time, 
+a solver will not be immediate
+        disqualified if it displays a wrong solution during the
+        execution of the evaluation. The organizers will aim to
+        provide all participants a fair chance of submitting bug fixes.
+A solver in
+  the incremental track is considered buggy if it
+  does not correctly implement ipamir_solve, ipamir_val_lit or ipamir_val_obj
+    as specified in the <a href="https://bitbucket.org/coreo-group/ipamir">IPAMIR header</a>.
+</p>
+
 <!--
 
 <h2>Benchmark Examples</h2>
