@@ -109,6 +109,20 @@ Artificial Intelligence 241:45-65, 2016.
  <a href="https://github.com/biotomas/ipasir">https://github.com/biotomas/ipasir</a>.
   </p>
 
+<h2>Incremental Track Benchmarks</h2>
+
+<p>(See <a href="call-for-benchmarks.html">Call for Benchmarks</a> for submission instructions.)
+  For this newly-established special track on incremental MaxSAT,
+  we strongly encourage the community to support this new development by submitting benchmark applications. In contrast to main track submissions,
+  a benchmark application in the incremental track constitutes a command-line program with a collection of input files. An instance of the benchmark application constitutes an execution
+  of the program which makes multiple MaxSAT solver invocations through the <a href="incremental.html">IPAMIR interface</a> on a given input file, the name of which is given as the single
+  command\-line argument to the program.</p>
+
+<p>Your benchmark application must contain a single directory named after the application. Issuing make with the environment variable IPAMIRSOLVER in this directory must result in a successful
+  build of the application using the MaxSAT solver located in ../../maxsat/$(IPAMIRSOLVER) which implements the IPAMIR interface as a static library. Please see the app/ipamirapp directory in <a href="https://bitbucket.org/coreo-group/ipamir">the IPAMIR repository</a> for an example application.</p>
+
+<p>Do not hesitate to contact the organizers for help on preparing benchmark applications!</p>
+
 
 <h2>Solver Submissions to the Incremental Track</h2>
 
@@ -138,6 +152,8 @@ A solver in
   does not correctly implement ipamir_solve, ipamir_val_lit or ipamir_val_obj
     as specified in the <a href="https://bitbucket.org/coreo-group/ipamir">IPAMIR header</a>.
 </p>
+
+
 
 <!--
 
