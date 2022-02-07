@@ -280,9 +280,7 @@ See details <a href="incremental.html">here</a>.
 	    to existing solvers.</i></p>
 	  
       <p>The input file must be read from the file given as a parameter to your solver. For example:</p>
-<p>
   <pre>./mysolver &#060;input_file_name&#062;</pre>
-</p>
         <p>In MaxSAT Evaluation 2022, the same input format is used
           for all benchmark instances in the main tracks.
 	  Variables as indexed with positive integers.
@@ -330,6 +328,13 @@ h 1 2 3 4 0
 </code>
 </p>
 
+<p>You might find some of the software in the <a
+href="https://bitbucket.org/fbacchus/maxsat_benchmarks_code_base/src/master/">
+benchmark code base</a> to be useful. This software includes
+<code>std_wcnf</code>, a new version of the standardizer, which is
+able to convert old format MaxSat instances into the new format, and
+<code>to_old_fmt</code> a program to convert from the new format back
+to the old format.</p>
 
 <a name=output></a>
         <h4>Output format</h4>
