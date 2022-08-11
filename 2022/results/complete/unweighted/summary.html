@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<title>MaxSAT Evaluation 2022</title>
+
+<script src="canvasmath.js"></script>
+<script src="gnuplot_common.js"></script>
+
+</head>
+<body oncontextmenu="return false;">
+  
+
+<h1>MaxSAT Evaluation 2022: Summary of Unweighted Complete Track</h1>
+
+<p></p>
+
+
+<center>
+<table border="1">
+<tr><th>Solver</th><th>#Solved</th><th>Time(avg)</th></tr>
+<tr><td>CASHWMaxSAT-CorePlus</td><td>438</td><td>285.59</td></tr>
+<tr><td>CASHWMaxSAT-Plus</td><td>433</td><td>293.92</td></tr>
+<tr><td>UWrMaxSat-SCIP</td><td>432</td><td>308.53</td></tr>
+<tr><td>MaxHS</td><td>430</td><td>284.05</td></tr>
+<tr><td>EvalMaxSAT</td><td>424</td><td>230.59</td></tr>
+<tr><td>MaxCDCL</td><td>415</td><td>240.15</td></tr>
+<tr><td>UWrMaxSat</td><td>407</td><td>185.77</td></tr>
+<tr><td>CGSS</td><td>404</td><td>264.29</td></tr>
+<tr><td>Open-WBO-Mergesat</td><td>377</td><td>211.7</td></tr>
+<tr><td>Open-WBO-Glucose</td><td>375</td><td>158.8</td></tr>
+<tr><td>Exact</td><td>296</td><td>246.45</td></tr>
+</table>
+
+<body oncontextmenu="return false;">
+<table class="noborder"><tr><td><script src="./unweighted.js"></script>
+<canvas id="unweighted_1" width=800 height=600 tabindex="0">
+    <div id='errorDiv'>Your browser does not support the HTML 5 canvas element</div>
+</canvas>
+<script>
+if (window.attachEvent) {window.attachEvent('onload', unweighted_1);}
+else if (window.addEventListener) {window.addEventListener('load', unweighted_1, false);}
+else {document.addEventListener('load', unweighted_1, false);}
+</script>
+
+</center>
+</body>
+
+</html>
+

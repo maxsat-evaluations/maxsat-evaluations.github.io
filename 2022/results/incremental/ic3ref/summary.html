@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<title>MaxSAT Evaluation 2022</title>
+
+<script src="canvasmath.js"></script>
+<script src="gnuplot_common.js"></script>
+
+</head>
+<body oncontextmenu="return false;">
+  
+
+<h1>MaxSAT Evaluation 2022: Summary of Incremental Track - PDR</h1>
+
+<p></p>
+
+
+<center>
+<table border="1">
+<tr><th>Solver</th><th>#Solved</th><th>Time(avg)</th></tr>
+<tr><td>EvalMaxSAT</td><td>44</td><td>772.86</td></tr>
+<tr><td>UWrMaxSat</td><td>38</td><td>845.14</td></tr>
+<tr><td>iMaxHS</td><td>36</td><td>563.37</td></tr>
+<tr><td>UWrMaxSat+SCIP</td><td>31</td><td>498.38</td></tr>
+</table>
+
+<body oncontextmenu="return false;">
+<table class="noborder"><tr><td><script src="./unweighted.js"></script>
+<canvas id="unweighted_1" width=800 height=600 tabindex="0">
+    <div id='errorDiv'>Your browser does not support the HTML 5 canvas element</div>
+</canvas>
+<script>
+if (window.attachEvent) {window.attachEvent('onload', unweighted_1);}
+else if (window.addEventListener) {window.addEventListener('load', unweighted_1, false);}
+else {document.addEventListener('load', unweighted_1, false);}
+</script>
+
+</center>
+</body>
+
+</html>
+
