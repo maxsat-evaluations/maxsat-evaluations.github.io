@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<link rel="stylesheet" type="text/css" href="default.css" media="screen"/>
+<title>MaxSAT Evaluation 2023</title>
+</head>
+
+<body>
+
+<div class="outer-container">
+
+<div class="inner-container">
+
+<div class="header">
+		
+<div class="title">
+
+<span class="sitename"><a href="index.html"><font color="#00b386">MaxSAT Evaluation</font> <font color="#00ddaa">2023</font></a></span>
+<div class="slogan">Affiliated with <a href="">SAT 2023</a>  &nbsp;  &middot; &nbsp;  &nbsp;  &middot; &nbsp; Italy<br><br></div>
+    </div>
+</div>
+
+
+
+<div class="main">		
+
+<div class="content">
+
+<p></p>
+
+<h1>Call for Benchmarks</h1>
+
+<p>    <i>Please note that the organizers are happy to provide advice on
+    getting the benchmarks into the right format, and that we have
+     tools that can help in fixing certain format related problems.</i></p>
+
+
+<h3>Main Track Benchmarks</h3>
+
+<p>For the main tracks, we invite submissions of collections of MaxSAT instances in <a href="rules.html#input">the standard WCNF submission format</a>. Note that the focus of MSE 2023 is on non-randomly generated MaxSAT instances.
+</p>
+
+<h3>Incremental Track Benchmarks</h3>
+
+<p>For the special track on incremental MaxSAT, we strongly encourage the community to submit benchmark applications. In contrast to main track submissions, a benchmark application in the incremental track constitutes a command-line program with a collection of input files. An instance of the benchmark application constitutes an execution of the program which makes multiple MaxSAT solver invocations through the <a href="incremental.html">IPAMIR interface</a> on a given input file, the name of which is given as the single command-line argument to the program.</p>
+
+<p>Your benchmark application must contain a single directory named after the application. Issuing make with the environment variable IPAMIRSOLVER in this directory must result in a successful build of the application using the MaxSAT solver located in ../../maxsat/$(IPAMIRSOLVER) which implements the IPAMIR interface as a static library. Please see the app/ipamirapp directory in <a href="https://bitbucket.org/coreo-group/ipamir">the IPAMIR repository</a> for an example application.</p>
+
+<h3>Submission Procedure</h3>
+
+<p>
+  <ul>
+    <li>
+  A benchmark submission should consist of a single zip or gzipped tar package, containing the WCNF instance files (for main track benchmark submissions) or the benchmark application program and input files (for incremental track benchmark submissions), together with a description of the benchmarks.</li>
+    <li>Please use appropriate file naming conventions. Ideally, each instance file name should contain a short descriptive part for the problem domain as well as the parameters used for generating the instance as applicable.</li>
+    <li>The benchmark description description must be formatted in <a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html">IEEE Proceedings style</a>, and submitted as PDF.
+      The description should include author information with affiliations, a description of the problem domain in question, a description of the parameters used for generating the instances, and the file name convention. References should be used as appropriate.
+  </ul>
+  <p>
+    The benchmark descriptions will be posted on the MaxSAT Evaluation 2023 website.
+Furthermore, the organizers are considering publishing the collection of
+      system and benchmark descriptions as a report under the report series of Department of
+    Computer Science, University of Helsinki (with an ISSN number).
+    </p>
+      
+<hr><br>
+Please submit benchmarks by email to <a href="mailto:maxsatevaluation@gmail.com">maxsatevaluation@gmail.com</a> using the subject title "MSE23 benchmark submission" <b>by May 15 at the latest.</b>
+
+      
+</div>
+
+
+  <!-- NAVIGATION -->
+
+  
+<div class="navigation">
+
+<h2><b>Important Dates</b></h2>
+<ul>
+<li><a href="submission.html">Submissions: <span class="right">May 15</span></a></li><br>
+<li><a href="rankings.html">Results: <span class="right">at SAT'23</span></a></li>
+</ul>
+
+
+<h2><b>Calls</b></h2>
+<ul>
+  <li><a href="call-for-benchmarks.html">Call for Benchmarks</a></li>
+  <li><a href="call-for-solvers.html">Call for Solvers</a></li>
+  </ul>
+
+  <h2><b>Participation</b></h2>
+  <ul>
+    <li><a href="tracks.html">Main Tracks</a></li>
+    <li><a href="incremental.html">Incremental Track</a></li>
+    <li><a href="rules.html">Rules</a></li>
+    <li><a href="execution.html">Execution Environment</a></li>
+  <li><a href="submission.html">Submissions</a></li>
+  </ul>
+
+<h2><b>Results</b></h2>
+
+<ul>
+  <li><a href="rankings.html">Rankings and Data</a></li>
+  <li><a href="benchmarks.html">Benchmarks</a></li>
+  <li><a href="descriptions.html">Solvers</a></li>
+  </ul>
+  
+
+<h2><b>Further Information</b></h2>
+<ul>
+  <li><a href="organization.html">Organizers</a></li>
+<li><a href="history.html">History</a></li>
+<li><a href="credits.html">Site credits</a></li>
+</ul>
+
+</div>
+
+
+
+<div class="clearer">&nbsp;</div>
+
+
+
+
+<div class="footer">
+
+<span class="right">
+
+
+</span>
+
+<div class="clearer"></div>
+
+</div>
+
+
+
+
+</div>
+
+</div>
+
+</body>
+
+</html>
