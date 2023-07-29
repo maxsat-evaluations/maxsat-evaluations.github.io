@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="description"/>
+<meta name="keywords" content="keywords"/> 
+<meta name="author" content="author"/> 
+<title>MaxSAT Evaluation 2023</title>
+
+<script src="canvasmath.js"></script>
+<script src="gnuplot_common.js"></script>
+
+</head>
+<body oncontextmenu="return false;">
+  
+
+<h1>MaxSAT Evaluation 2023: Summary of Weighted Exact Track</h1>
+
+<p></p>
+
+
+<center>
+<table border="1">
+<tr><th>Solver</th><th>#Solved</th><th>Time(avg)</th></tr>
+<tr><td>WMaxCDCL-S6-HS12</td><td>446</td><td>276.74</td></tr>
+<tr><td>WMaxCDCL-S9-HS9</td><td>446</td><td>342.86</td></tr>
+<tr><td>EvalMaxSAT-SCIP</td><td>442</td><td>405.04</td></tr>
+<tr><td>CASHWMAXSAT-CorePlus</td><td>432</td><td>128.04</td></tr>
+<tr><td>CASHWMAXSAT-CorePlus-m</td><td>431</td><td>402.39</td></tr>
+<tr><td>EvalMaxSAT</td><td>429</td><td>330.39</td></tr>
+<tr><td>CGSS2-SCIP</td><td>420</td><td>203.89</td></tr>
+<tr><td>CGSS2</td><td>419</td><td>97.6</td></tr>
+<tr><td>WMaxCDCL</td><td>389</td><td>120.85</td></tr>
+<tr><td>Pacose</td><td>372</td><td>255.94</td></tr>
+<tr><td>Pacose-MaxPre2</td><td>350</td><td>185.71</td></tr>
+</table>
+
+<body oncontextmenu="return false;">
+<table class="noborder"><tr><td><script src="./unweighted.js"></script>
+<canvas id="unweighted_1" width=800 height=600 tabindex="0">
+    <div id='errorDiv'>Your browser does not support the HTML 5 canvas element</div>
+</canvas>
+<script>
+if (window.attachEvent) {window.attachEvent('onload', unweighted_1);}
+else if (window.addEventListener) {window.addEventListener('load', unweighted_1, false);}
+else {document.addEventListener('load', unweighted_1, false);}
+</script>
+
+</center>
+</body>
+
+
+</html>
+
