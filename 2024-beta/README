@@ -1,0 +1,21 @@
+# To Preview the page 
+Requires a local server. 
+Simplest way to achieve this is to run 
+```
+python3 -m http.server
+```
+
+for newer python instalations or 
+```
+python -m SimpleHTTPServer
+```
+after which the site renders in localhost:8000.
+
+
+
+# To Make New Page
+- Copy "template-for-new-page.html", change the name into your new page and leave in the same folder. 
+- Add the contents of your page into an .html file in the contents directory
+- Alter the argument on line 23 of "template-for-new-page.html"  to point to the .html file created in the previous step. 
+    - leave out the extension .html. 
+- To alter navigation bar, modify the file ```site-parts/site_navigation```
