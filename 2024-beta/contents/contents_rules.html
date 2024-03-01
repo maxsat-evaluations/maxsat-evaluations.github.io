@@ -56,7 +56,7 @@
         <li> The solver in the incremental track does not correctly implement ipamir_solve, ipamir_val_lit or ipamir_val_obj
           as specified in the <a href="https://bitbucket.org/coreo-group/ipamir">IPAMIR header</a>.
         <li> The solver crashes on a significant number of instances.</li>
-        <li style="color:blue"> The solver does not pass a regression suite (i.e. crashes on at least one instance)
+        <li style="color:blue"> The solver does not pass a regression suite 
           consisting of small instances which caused at least one solver from
           the last evaluation to crash. The regression suite will be published
           latest at the end of march.</li>
@@ -351,19 +351,19 @@ to the old format.</p>
                 </li>
                 <li>
                   <pre>s SATISFIABLE</pre> This line is to be
-                  output when the instance only contains satisfiable
-                  hard clauses. The solver has to return with the 
-                  exit code 10.
-                </li>
-                <li>
-                  <pre>s UNKNOWN</pre> This line must be output in
-                  any other case. Note that solvers in the
+                  output when the solver finds a solution satisfying the hard clauses. 
+                  The solver has to return with the 
+                  exit code 10. Note that solvers in the
                   anytime track will typically output "s
-                  UNKNOWN" unless they can verify that the best
+                  SATISFIABLE" unless they can verify that the best
                   solution they have found is optimal, in which
                   case they can output "s OPTIMUM FOUND". However,
                   no extra score will be associated in the
-                  anytime tracks for proving optimality. Exact
+                  anytime tracks for proving optimality.
+                </li>
+                <li>
+                  <pre>s UNKNOWN</pre> This line must be output in
+                  any other case.  Exact
                   solvers in the main track can output "s UNKNOWN"
                   if they are unable to find a optimal solution
                   (note that not outputting an "s" line is the
