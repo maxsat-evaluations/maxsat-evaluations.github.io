@@ -23,7 +23,7 @@ statically linked solvers that run on StarExec.</p>
 <p> Solvers need to be submitted <b>by May 31 the latest</b>. We encourage the participants to test
 their 
 solvers within the execution environment well in advance.
-The main tracks of MSE 2023 will be using the <b>StarExec</b> system which supports
+The exact track of MSE 2024 will be using the <b>StarExec</b> system which supports
 experimental evaluation of logic solvers. All interaction with
 StarExec is preformed via its web
 interface at <a href="https://www.starexec.org">https://starexec.org</a>
@@ -61,6 +61,21 @@ various parameter settings to your solver.
     <li>./doc/ is where you place your <a href="rules.html#description">PDF formatted description</a> of
     your solver.
 </ul>  
+
+<h3>Testing Your Solver Prior to Submissison</h3>
+<p>The organizers strongly urge developers to test their solvers prior to submitting them. 
+As of 2024, a solver in the main tracks needs to pass a regression suite of small instances which caused at least one solver from
+the last evaluation to crash. The regression suite will be published
+latest at the end of march.</p>
+
+Further testing of solvers can be done with the <a href="https://bitbucket.org/fbacchus/maxsat_benchmarks_code_base/src/master/">verify_soln</a>
+tool.
+When invoked on a WCNF instance and a solver output, the tool will check that the (i) all hard clauses are satisfied, 
+(ii) the solution provided in the 'v' line matches the value of the last 'o' line.
+Later in the spring, we will also publish a more extensive fuzzer for testing solvers.
+Details on the fuzzer will be anounced later. 
+
+
 
 <h3>Using StarExec</h3>
 
@@ -102,10 +117,10 @@ various parameter settings to your solver.
 </p>
 
 <a name=testing></a>
-  <h4>Testing your solver</h4>
+  <h4>Testing that your solver runs on StarExec</h4>
 
  <p>
-  We put a few testing instances in the MSE2024->Testing->Exact and ->Testing->Anytime spaces which you can 
+  We will put a few testing instances in the MSE2024->Testing->Exact and ->Testing->Anytime spaces which you can 
   use after you uploaded your solver to these spaces. To run a test:
 </p>
  <p>
@@ -118,7 +133,12 @@ various parameter settings to your solver.
   You can check out the status and results of your test job by clicking on Jobs on the top and selecting your job.</p>
  
   <p><i>To check the output of your job and the correctness of your solution</i><br>
-  When creating a job, the post processor "MSE2017 Checker" is enabled by default. This checker will run on the output of your solver and will check if: (i) all hard clauses are satisfied, (ii) the solution provided in the 'v' line matches the value of the last 'o' line, (iii) the solution is larger or equal than the optimum solution. Once the job is finished, you can check the logs of your solver by downloading the "job output" in the job webpage. You can also download the "job information" that will contain a .csv file with a summary of your job. This .csv file will contain default attributes such as "benchmark id", "solver", "wallclock time", "memory usage" as well as checker attributes such as "optimum_solution",  "hard_clauses",  "optimum", "checker_solution",  "checker" and  "given_solution".  <b>If the column "checker" reports an error then it means that your solver has a bug that needs to be fixed before submission</b>. If this is the case, we recommend you to download the <a href="MSE2017-Checker.zip">checker</a> and run it offline on that benchmark for more details.
+  Once the job is finished, 
+  you can check the logs of your solver by downloading the "job output" in the job webpage. 
+  You can also download the "job information" that will contain a .csv file with a summary of your job. 
+  This .csv file will contain default attributes such as "benchmark id", "solver", "wallclock time", 
+  "memory usage" as well as checker attributes such as "optimum_solution",  "hard_clauses",  "optimum". 
+  <b>Any errors encountered will need to be fixed prior to the submission of the final solver. </b>
   </p>
 
  <h4>Uploading the final version of your solver</h4>

@@ -56,7 +56,7 @@
         <li> The solver in the incremental track does not correctly implement ipamir_solve, ipamir_val_lit or ipamir_val_obj
           as specified in the <a href="https://bitbucket.org/coreo-group/ipamir">IPAMIR header</a>.
         <li> The solver crashes on a significant number of instances.</li>
-        <li style="color:blue"> Each solver must pass a regression suite
+        <li style="color:blue"> The solver does not pass a regression suite (i.e. crashes on at least one instance)
           consisting of small instances which caused at least one solver from
           the last evaluation to crash. The regression suite will be published
           latest at the end of march.</li>
@@ -87,7 +87,7 @@ a single core of the processor on the computing node it is run on.
   package must also be submitted together with a bug-fixed solver
   binary.  </p>
 
-<p style="color:blue"><b>Starting in 2024:</b> A solver is <b>not</b> allowed 
+<p style="color:blue">A solver is <b>not</b> allowed 
   to use external binaries (including commercial MIP solvers) of
   unmodified third-party libraries. Open-source libraries are allowed.
 </p>
@@ -409,15 +409,15 @@ to the old format.</p>
                 "v" line provides a truth assignment to the variables
                 of the instance that will be used to check the
                 correctness of the answer, i.e., it must provide a
-                list of non-complementary literals which, when
-                interpreted as true, achieves a sum of weights of
+                list of zeroes and ones represeting an assignment to
+                the variables (1 -> true, 0 -> false)
+                which, achieves a sum of weights of
                 unsatisfied clauses as specified in the "o" line.<br>
-                A literal is denoted by an integer that identifies the
-                variable and the negation of a literal is denoted by a
-                minus sign immediately followed by the integer of the
-                variable.<br>  The solution line must define the value
-                of each variable. The order of literals does not
-                matter.<br>  If the solver does not output a value
+                The assignment to the variable of index i of the instance will be the 
+                i:th value in this list (so the order matters).
+                <br>  The solution line must define the value
+                of each variable. 
+                <br>  If the solver does not output a value
                 line, or if the value line does not match the
                 specification, then UNKNOWN will be assumed.
             </li>
@@ -445,10 +445,10 @@ to the old format.</p>
             (and it must match the data specified in the "v" line).
 
         <h4>Example</h4>
-        <pre>c --------------------------<br>c My MaxSAT Solver<br>c --------------------------<br>o 143<br>s OPTIMUM FOUND<br>v -1 2 3 -4 -5 6 -7 8 9 10 -11 -12 13 -14 -15 16 -17 18 19 20</pre>
+        <pre>c --------------------------<br>c My MaxSAT Solver<br>c --------------------------<br>o 143<br>s OPTIMUM FOUND<br>v 0 1 1 0 0 1 0 1 1 1 0 0 1 0 0 1 0 1 1 1</pre>
 
 <br>
-<b>Note:</b> Consider changes to the <b>v-line</b> for a more compressed certificate. Details are available in the <a href="vline.html">v-line section</a>. These changes are optional for this year but can have reduce time for printing and will significantly reduce log sizes.
+Details on the output are available in the <a href="vline.html">v-line section</a>. 
 
 
 <h3>Special Track on Incremental MaxSAT</h3>
