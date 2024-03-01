@@ -1,0 +1,71 @@
+<p></p>
+
+<h1>News</h1>
+<h2>Rules</h2>
+<ul>
+  <li"> 
+    Each solver must pass a regression suite
+    consisting of small instances which caused at least one solver from
+    the last evaluation to crash. The regression suite will be published
+    latest at the end of march.
+  </li>
+        
+</ul>
+<p><b>Starting in 2024:</b> A solver is <b>not</b> allowed 
+  to use external binaries (including commercial MIP solvers) of
+  unmodified third-party libraries. Open-source libraries are allowed.
+</p>
+<ul>
+    <li"> 
+      <strong>Starting in 2024, Solver Exit Codes:</strong><br>
+      As in the incremental track, the solver must return one of the following exit codes:
+      <ul>
+        <li> <b>0</b> &nbsp;&nbsp;if it cannot find an optimal solution or prove unsatisfiability.</li>
+        <li> <b>10</b> if the instance contains only satisfiable hard clauses.</li>
+        <li> <b>20</b> if it finds that the hard clauses are unsatisfiable.</li>
+        <li> <b>30</b> if it finds an optimal solution.</li>
+      </ul>
+    </li> 
+</ul>
+        
+<h2>Solver Development</h2>
+  <br>
+  As the yearly MaxSAT Evaluation drives MaxSAT 
+  solver development forward, we want to recommend some 
+  standardizations to the solvers to make them easier to use. 
+  <br>
+  These points are open for discussion and <b>no such instance will be included 
+  in the Benchmark set</b>. This topic is also open for discussion in SAT solving, 
+  as some solvers, like kissat and CaDiCaL, can handle empty 
+  instances/clauses, while others cannot. These suggestions 
+  are in line with the mathematical logic of the Boolean 
+  satisfiability problem.
+  <p>
+    <ul>
+      <li>An empty instance should yield a weight "o 0", with an empty model line "v" and the status line "s OPTIMUM FOUND".</li>
+      <li>An empty hard clause should result in an unsatisfiable instance.</li>
+      <li>An empty soft clause should be unsatisfiable, but the instance can still be satisfiable.</li>
+      <li>A solver should accept weight 0 for a soft clause.</li>
+    </ul>
+  </p>
+
+<h3>MaxSAT Fuzzer and Regression Suite</h3>
+  We further want to advertise the use of a 
+  <b>regression suite</b> which provides a set of 
+  small valid instances known to have caused 
+  issues in a previous solver.
+  <br>
+  Further, we plan to provide a <b>MaxSAT fuzzing toolsuite</b> 
+  (new release in a GitHub repository probably at the end of March) 
+  for exhaustive testing of MaxSAT solvers. 
+  This toolsuite compares the solution of your solver 
+  with any existing solver which complies to the 
+  rules of the MaxSAT Evaluation. It compares if the "o-value"
+  is the same as the value provided by your model and if no 
+  other solver (e.g. a verified MaxSAT solver) 
+  can produce a better solution output with a 
+  correct model. It further is able to recognize solver
+  crashes on valid instances (it does not produce empty 
+  clauses or instances). Then it minimizes the instance
+  with a delta debugging algorithm to provide simple 
+  instances for debugging.
