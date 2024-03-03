@@ -59,7 +59,8 @@
         <li style="color:blue"> The solver does not pass a regression suite 
           consisting of small instances which caused at least one solver from
           the last evaluation to crash. The regression suite will be published
-          latest at the end of march.</li>
+          latest at the end of March. Note that passing the regression suite does not guarantee that 
+          solver will be considered bug-free in the evaluation</li> 
         
 </ul>
       If the solver's bug cannot be resolved, the submitters will
@@ -163,6 +164,15 @@ will be ranked based on the number
 MaxSAT instances in <a href="#input">the standard WCNF format</a>, and
 conform to <a href="#output">the output format specified
 here</a>.
+<li style="color:blue"><b>Regression Suite:</b> Each solver submited to the main tracks must pass a regression suite
+  consisting of small instances which caused at least one solver from
+  the last evaluation to crash or to produce incorrect results. 
+  Incorrect results could be claiming the wrong o-value (i.e. cost) for 
+  an optimal solution (only exact tracks),
+  a lower o-value than a verified optimal solution (exact and anytime tracks), or
+  a o value inconsistent with the solution returned (exact and anytime tracks).
+  The regression suite will be published latest at the end of March,
+  together with a tool which checks all of these cases.</li>
 <a name=sigterm></a>
 <li><b>SIGTERM:</b> At the time limit solvers will receive a SIGTERM
   signal shortly before being forcibly terminated by a SIGKILL signal.
@@ -237,7 +247,6 @@ send your solver a SIGTERM signal after &#60delay&#62 seconds,
 after which StarExec will terminate your solver at its timeout.
 </ol>
 </li>
-
 </ul>
 </p>
 
@@ -426,8 +435,8 @@ to the old format.</p>
               <strong>Starting in 2024, Solver Exit Codes:</strong><br>
               As in the incremental track, the solver must return one of the following exit codes:
               <ul>
-                <li> <b>0</b> &nbsp;&nbsp;if it cannot find an optimal solution or prove unsatisfiability.</li>
-                <li> <b>10</b> if the instance contains only satisfiable hard clauses.</li>
+                <li> <b>0</b> &nbsp;&nbsp;if it cannot find a solution satisfying the hard clauses or prove unsatisfiability.</li>
+                <li> <b>10</b> if the solver finds a solution satisfying the hard clauses but does not prove it to be unsatisfiabe.</li>
                 <li> <b>20</b> if it finds that the hard clauses are unsatisfiable.</li>
                 <li> <b>30</b> if it finds an optimal solution.</li>
               </ul>
@@ -468,44 +477,3 @@ Solvers participating in the incremental track perform their I/O via the IPAMIR 
     </ul>
   </p>
 
-<h2>Solver Development</h2>
-<br>
-As the yearly MaxSAT Evaluation drives MaxSAT 
-solver development forward, we want to recommend some 
-standardizations to the solvers to make them easier to use. 
-<br>
-These points are open for discussion and <b>no such instance will be included 
-in the Benchmark set</b>. This topic is also open for discussion in SAT solving, 
-as some solvers, like kissat and CaDiCaL, can handle empty 
-instances/clauses, while others cannot. These suggestions 
-are in line with the mathematical logic of the Boolean 
-satisfiability problem.
-<p>
-  <ul>
-    <li>An empty instance should yield a weight "o 0", with an empty model line "v" and the status line "s OPTIMUM FOUND".</li>
-    <li>An empty hard clause should result in an unsatisfiable instance.</li>
-    <li>An empty soft clause should be unsatisfiable, but the instance can still be satisfiable.</li>
-    <li>A solver should accept weight 0 for a soft clause.</li>
-  </ul>
-</p>
-
-<h3>MaxSAT Fuzzer and Regression Suite</h3>
-We further want to advertise the use of a 
-<b>regression suite</b> which provides a set of 
-small valid instances known to have caused 
-issues in a previous solver.
-<br>
-Further, we plan to provide a <b>MaxSAT fuzzing toolsuite</b> 
-(new release in a GitHub repository probably at the end of March) 
-for exhaustive testing of MaxSAT solvers. 
-This toolsuite compares the solution of your solver 
-with any existing solver which complies to the 
-rules of the MaxSAT Evaluation. It compares if the "o-value"
-is the same as the value provided by your model and if no 
-other solver (e.g. a verified MaxSAT solver) 
-can produce a better solution output with a 
-correct model. It further is able to recognize solver
-crashes on valid instances (it does not produce empty 
-clauses or instances). Then it minimizes the instance
-with a delta debugging algorithm to provide simple 
-instances for debugging.

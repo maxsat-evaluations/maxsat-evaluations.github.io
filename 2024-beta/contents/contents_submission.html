@@ -68,12 +68,16 @@ As of 2024, a solver in the main tracks needs to pass a regression suite of smal
 the last evaluation to crash. The regression suite will be published
 latest at the end of march.</p>
 
-Further testing of solvers can be done with the <a href="https://bitbucket.org/fbacchus/maxsat_benchmarks_code_base/src/master/">verify_soln</a>
+<p>Further testing of solvers can be done with the <a href="https://bitbucket.org/fbacchus/maxsat_benchmarks_code_base/src/master/">verify_soln</a>
 tool.
 When invoked on a WCNF instance and a solver output, the tool will check that the (i) all hard clauses are satisfied, 
 (ii) the solution provided in the 'v' line matches the value of the last 'o' line.
 Later in the spring, we will also publish a more extensive fuzzer for testing solvers.
-Details on the fuzzer will be anounced later. 
+Details on the fuzzer will be anounced later. </p>
+
+<p>The organizers of the MSE aim to make a <a hred="guidelines.html">MaxSAT fuzzer</a> available to the community by the end of 
+  March. The fuzzer will check the correctness and robustness of solvers more broadly than the regression suite 
+and we strongly encourage developers to make use of it. </p>
 
 
 
