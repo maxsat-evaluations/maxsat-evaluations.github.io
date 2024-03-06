@@ -58,10 +58,14 @@
         <li> The solver crashes on a significant number of instances.</li>
         <li style="color:blue"> The solver does not pass a regression suite 
           consisting of small instances which caused at least one solver from
-          the last evaluation to crash. The regression suite will be published
-          latest at the end of March. Note that passing the regression suite does not guarantee that 
-          solver will be considered bug-free in the evaluation</li> 
-        
+          the last evaluation to crash or to produce incorrect results. 
+          Incorrect results could be a wrong o-value (only exact tracks),
+          a better o value than the verified solution (exact and anytime tracks) or
+          a o value inconsistent with the model (exact and anytime tracks). 
+          The regression suite will be published latest at the end of March,
+          together with a tool checking all of these cases. 
+          Note that passing the regression suite does not guarantee that 
+          solver will be considered bug-free in the evaluation.</li> 
 </ul>
       If the solver's bug cannot be resolved, the submitters will
       still have the option of having the solver's correct results
