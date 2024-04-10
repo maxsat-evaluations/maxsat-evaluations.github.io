@@ -17,21 +17,23 @@
   </p>
   <p><b>We emphasize that all benchmark sets used in the main track evaluation only 
   contain non-empty clauses and at least one soft clause.</b> These suggestions should be taken 
-  as reccomendations and topics for discussion. Similar topics are currently discussed in 
+  as recommendations and topics for discussion. Similar topics are currently discussed in 
   the SAT solving community as well where some solvers, like kissat and CaDiCaL, can handle empty 
   instances/clauses, while others cannot. </p>
 
 
 <h2>MaxSAT Fuzzer and Regression Suite</h2>
   <p>We further want to advertise the use of a 
-  <b>regression suite</b> which provides a set of 
+  <b><a href=https://github.com/tobipaxe/MaxSATRegressionSuite/tree/main>regression suite</a></b> which provides a set of 
   small valid instances known to have caused 
   issues in a previous solver.
-  <b>All solvers submitted to the main tracks need to pass the regression suite.</b></p>
+  <b>All solvers submitted to the main tracks need to pass the regression suite.</b>
+  More specific information can be found on the <a href=https://github.com/tobipaxe/MaxSATRegressionSuite/tree/main>GitHub</a> repository
+  or the <a href="/rules.html">rules page.</a>
+</p>
 
   <br>
   <p>Further, we plan to provide a <b>MaxSAT fuzzing toolsuite</b> 
-  (new release in a GitHub repository probably at the end of March) 
   for exhaustive testing of MaxSAT solvers. 
   This toolsuite compares the solution of your solver 
   with any existing solver which complies to the 
@@ -43,4 +45,6 @@
   crashes on valid instances (it does not produce empty 
   clauses or instances). Then it minimizes the instance
   with a delta debugging algorithm to provide simple 
-  instances for debugging.</p>
+  instances for debugging.
+  The fuzzer will be made available at a later time
+</p>

@@ -28,8 +28,9 @@
       consultation with the solver developers. Participants are
       encouraged to consult the organizers in case of doubt.
     </p>
+  
   <h4>Refusal of Submissions</h4>
-  <p>
+  <p style="color:blue">
     The organizers reserve the right to refuse solver or benchmarks submissions
     at their disgression.  
   </p>
@@ -146,12 +147,16 @@ will be ranked based on the number
 </p>
 
 <p>
-      <i>The organizers reserve the right to use additional scoring metrics for the evaluation results, such as ones which take into account search progress in terms of improvements to the cost of best solution found as a function of time.</i>
+      <i>The organizers reserve the right to use additional scoring metrics for the evaluation results, such as ones which take into account 
+        search progress in terms of improvements to the cost of best solution found as a function of time.</i>
 </p>
 
 <h3>Special track on incremental MaxSAT</h3>
 
-    <p>In the incremental track, all solvers will be ranked on each benchmark application independently. For a specific benchmark application, the rank of a solver is determined by the number of solved instances for that benchmark. Solving an instance means that all invocations of the solver are correct, i.e. correctly return either OPTIMUM FOUND or UNSAT as specified in the <a href="https://bitbucket.org/coreo-group/ipamir">IPAMIR header</a>.
+    <p>In the incremental track, all solvers will be ranked on each benchmark application independently. For a specific benchmark application, 
+      the rank of a solver is determined by the number of solved instances for that benchmark. Solving an instance means that all invocations 
+      of the solver are correct, i.e. correctly return either OPTIMUM FOUND or UNSAT as specified in the 
+      <a href="https://bitbucket.org/coreo-group/ipamir">IPAMIR header</a>.
       </p>
 
 <h2>Solver Requirements</h2>
@@ -164,15 +169,23 @@ will be ranked based on the number
 MaxSAT instances in <a href="#input">the standard WCNF format</a>, and
 conform to <a href="#output">the output format specified
 here</a>.
-<li style="color:blue"><b>Regression Suite:</b> Each solver submited to the main tracks must pass a regression suite
+<li style="color:blue"><b>Regression Suite:</b> 
+  Each solver submitted to the main tracks must pass a regression suite
   consisting of small instances which caused at least one solver from
   the last evaluation to crash or to produce incorrect results. 
   Incorrect results could be claiming the wrong o-value (i.e. cost) for 
   an optimal solution (only exact tracks),
   a lower o-value than a verified optimal solution (exact and anytime tracks), or
   a o value inconsistent with the solution returned (exact and anytime tracks).
-  The regression suite will be published latest at the end of March,
-  together with a tool which checks all of these cases.</li>
+  The regression suite is available at <a href=https://github.com/tobipaxe/MaxSATRegressionSuite/tree/main>Github</a>.
+  The instances in the suite can be downloaded with the install script in the repository. 
+  <ul>
+    <li> As detailed in the readme, a solver participating in the exact weighted track needs to pass 
+      an invocation of testsolver.py with the default arguments except the --satSolver argument 
+      that can be set to point to a sat solver. A solver participating only in the unweighted tracks 
+      needs to pass with the argument --unweighted and a solver participating in the 
+      anytime track needs to pass with the --anytime flag. </li>
+  </ul>
 <a name=sigterm></a>
 <li><b>SIGTERM:</b> At the time limit solvers will receive a SIGTERM
   signal shortly before being forcibly terminated by a SIGKILL signal.
