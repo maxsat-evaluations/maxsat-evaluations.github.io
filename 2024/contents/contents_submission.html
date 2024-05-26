@@ -20,7 +20,7 @@
 solvers should  still be submitted following the procedure detailed in this section. We strongly encourage submitting your solver as a 
 statically linked solvers that run on StarExec.</p>
 
-<p> Solvers need to be submitted <b>by May 31 the latest</b>. We encourage the participants to test
+<p> Solvers need to be submitted <b>by June 10 the latest</b>. We encourage the participants to test
 their 
 solvers within the execution environment well in advance.
 The exact track of MSE 2024 will be using the <b>StarExec</b> system which supports
@@ -64,9 +64,8 @@ various parameter settings to your solver.
 
 <h3>Testing Your Solver Prior to Submissison</h3>
 <p>The organizers strongly urge developers to test their solvers prior to submitting them. 
-As of 2024, a solver in the main tracks needs to pass a regression suite of small instances which caused at least one solver from
-the last evaluation to crash. The regression suite will be published
-latest at the end of march.</p>
+As of 2024, a solver in the main tracks needs to pass a <a href=https://github.com/tobipaxe/MaxSATRegressionSuite/tree/main>regression suite</a> of small instances which caused at least one solver from
+the last evaluation to crash.</p>
 
 <p>Further testing of solvers can be done with the <a href="https://bitbucket.org/fbacchus/maxsat_benchmarks_code_base/src/master/">verify_soln</a>
 tool.
@@ -74,12 +73,6 @@ When invoked on a WCNF instance and a solver output, the tool will check that th
 (ii) the solution provided in the 'v' line matches the value of the last 'o' line.
 Later in the spring, we will also publish a more extensive fuzzer for testing solvers.
 Details on the fuzzer will be anounced later. </p>
-
-<p>The organizers of the MSE aim to make a <a hred="guidelines.html">MaxSAT fuzzer</a> available to the community by the end of 
-  March. The fuzzer will check the correctness and robustness of solvers more broadly than the regression suite 
-and we strongly encourage developers to make use of it. </p>
-
-
 
 <h3>Using StarExec</h3>
 
