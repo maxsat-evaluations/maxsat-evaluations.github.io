@@ -1,0 +1,687 @@
+<h2>
+  CDF Plots <br />
+  <button
+    id="fetchButton1"
+    onclick="changeCSV('unweighted.csv', 'Unweighted')"
+  >
+    unweighted
+  </button>
+  <button
+    id="fetchButton2004"
+    onclick="changeCSV('weighted.csv', 'Weighted')"
+  >
+    weighted
+  </button>
+  <br />
+  <!-- Buttons to trigger the filter function for satisfiable or unsatisfiable  -->
+  <!-- <button id="satisfiableButton" onclick="filterData('SATISFIABLE', ' SAT')">SATISFIABLE</button>
+  <button id="unsatisfiableButton" onclick="filterData('UNSATISFIABLE', ' UNSAT')">UNSATISFIABLE</button> -->
+</h2>
+
+<figure class="highcharts-figure">
+  <div id="container"></div>
+  <p class="highcharts-description">
+    Chart created as a student project at the university of Freiburg by Michael
+    Selinger (2024)
+  </p>
+</figure>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script>
+  // store current CSV file
+  let currentCsvFile = "weighted.csv";
+  let currentYear = "Weighted";
+  let currentSAT = "";
+
+  // 2. Proceed with loading CSV and creating the chart
+  function changeCSV(filePath, year) {
+    // save current Values
+    currentCsvFile = filePath;
+    currentYear = year;
+    currentSAT = "";
+
+    // 1. Show or hide the right table
+    if (year === "Weighted") {
+      document.getElementById("weightedTable").style.display = "block";
+      document.getElementById("unweightedTable").style.display = "none";
+    } else if (year === "Unweighted") {
+      document.getElementById("weightedTable").style.display = "none";
+      document.getElementById("unweightedTable").style.display = "block";
+    }
+
+    // Fetch CSV file from URL
+    fetch(filePath)
+      .then((response) => response.text())
+      .then((csvContent) => {
+        var results = Papa.parse(csvContent);
+        createArrays(results.data);
+      })
+      .catch((error) => console.error("Error fetching CSV:", error));
+  }
+
+  function filterData(filterValue, sat) {
+    currentSAT = sat;
+    // Fetch CSV file from URL
+    fetch(currentCsvFile)
+      .then((response) => response.text())
+      .then((csvContent) => {
+        var results = Papa.parse(csvContent);
+        const firstRow = results.data[0];
+
+        // Filter data based on column 2 (index 1)
+        const filteredData = results.data.filter(
+          (row) => row[1] === filterValue
+        );
+
+        // Combine the first row with the filtered rows
+        const finalData = [firstRow, ...filteredData];
+
+        createArrays(finalData);
+      })
+      .catch((error) => console.error("Error fetching CSV:", error));
+  }
+
+  function createArrays(data) {
+    // Check if data is defined
+
+    if (data) {
+      // Determine the number of columns
+      const numColumns = data[0].length;
+
+      // Arrays to store numbers for each column
+      const dataArrays = new Array(numColumns).fill([]).map(() => []);
+      const seriesArray = [];
+
+      // Iterate through columns
+      for (let j = 2; j < numColumns; j++) {
+        // Iterate through rows
+        for (let i = 0; i < data.length; i++) {
+          const row = data[i];
+
+          // Check if the current row has a value at the current column index
+          if (row[j] !== undefined) {
+            const columnValue = row[j];
+            const seconds = parseFloat(columnValue);
+            if (!isNaN(seconds)) {
+              dataArrays[j].push([data[i][0], seconds]);
+            }
+          }
+        }
+        // Sort the data from small to high
+        dataArrays[j].sort((a, b) => a[1] - b[1]);
+
+        // Assign X values to the first element in each sub-array
+        dataArrays[j].forEach((element, index) => {
+          element[0] = `${index + 1}: ${element[0]}`;
+        });
+
+        seriesArray.push({ name: data[0][j], data: dataArrays[j] });
+      }
+
+      // Print the sorted arrays
+      seriesArray.sort((a, b) => b.data.length - a.data.length);
+      seriesArray.unshift({ name: "Show/Hide All", visible: true });
+      printChart(seriesArray);
+    } else {
+      console.error("No data found in the CSV file");
+    }
+  }
+  // Funktion zum Ausblenden aller Serien im Highcharts-Diagramm
+  function hide_all() {
+    var chart = Highcharts.charts.find(
+      (chart) => chart && chart.renderTo.id === "container"
+    );
+    if (chart) {
+      chart.series.forEach(function (series) {
+        series.hide();
+      });
+    }
+  }
+
+  // Funktion zum Einblenden aller Serien im Highcharts-Diagramm
+  function show_all() {
+    var chart = Highcharts.charts.find(
+      (chart) => chart && chart.renderTo.id === "container"
+    );
+    if (chart) {
+      chart.series.forEach(function (series) {
+        series.show();
+      });
+    }
+  }
+
+  function printChart(seriesArray) {
+    Highcharts.chart("container", {
+      title: {
+        text: "MaxSAT Evaluation 2024 " + currentYear + currentSAT + " Benchmarks, Exact Track Summary",
+        align: "left",
+      },
+      chart: {
+        type: "line",
+        inverted: true,
+        height: 470,
+      },
+
+      yAxis: {
+        title: {
+          text: "time in seconds",
+          style: {
+            fontWeight: "bold",
+            fontSize: "17px",
+          },
+        },
+        min: -10,
+        max: 3650,
+        lineWidth: 1,
+        tickWidth: 1,
+        crosshair: true,
+        startOnTick: false,
+        endOnTick: false,
+      },
+
+      xAxis: {
+        title: {
+          text: "solved instances",
+          style: {
+            fontWeight: "bold",
+            fontSize: "17px",
+          },
+        },
+        reversed: false,
+        minPadding: 0.06,
+        maxPadding: 0.05,
+        gridLineWidth: 1,
+        crosshair: true,
+        startOnTick: false,
+        endOnTick: false,
+      },
+
+      legend: {
+        layout: "vertical",
+        align: "right",
+        verticalAlign: "middle",
+        itemMarginTop: 1,
+        itemMarginBottom: 0,
+      },
+
+      plotOptions: {
+        series: {
+          label: {
+            connectorAllowed: false,
+          },
+          pointStart: 1,
+          events: {
+            legendItemClick: function (event) {
+              if (this.name === "Show/Hide All") {
+                const chart = this.chart;
+                // Exclude the first series (index = 0) from the check, i.e. the dummy series
+                const solverSeriesAreVisible = this.chart.series.some(
+                  (series, i) => i !== 0 && series.visible
+                );
+
+                if (solverSeriesAreVisible) {
+                  hide_all();
+                } else {
+                  show_all();
+                }
+
+                return false; // Prevent default
+              }
+            },
+          },
+        },
+        column: {
+          events: {
+            legendItemClick() {
+              let chart = this.chart,
+                series = chart.series;
+              if (this.index === 0) {
+                if (chart.showHideFlag) {
+                  series.forEach((series) => {
+                    series.hide();
+                  });
+                } else {
+                  series.forEach((series) => {
+                    series.show();
+                  });
+                }
+                chart.showHideFlag = !chart.showHideFlag;
+              }
+            },
+          },
+        },
+      },
+
+      series: seriesArray,
+
+      credits: {
+        enabled: false,
+      },
+
+      responsive: {
+        rules: [
+          {
+            condition: {
+              maxWidth: 600,
+            },
+            chartOptions: {
+              legend: {
+                layout: "horizontal",
+                align: "center",
+                verticalAlign: "bottom",
+              },
+            },
+          },
+        ],
+      },
+    });
+  }
+
+  // Call the function when the site is loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    changeCSV("weighted.csv", "Weighted");
+  });
+</script>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Transposed Table</title>
+  <style>
+    /* Center the table on the page and give it border styling */
+    table {
+      margin: 0 auto; /* centers the table horizontally */
+      border-collapse: collapse; /* cells share borders for a cleaner look */
+    }
+    /* Add borders and padding to cells */
+    th,
+    td {
+      border: 1px solid #000; /* black border */
+      padding: 0.5em;
+    }
+    th {
+      cursor: pointer; /* <-- make column headers show a pointer */
+    }
+    /* Solver (first column) is left-aligned; the rest are right-aligned */
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+    /* Bold and center the table caption */
+    caption {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="weightedTable" style="display: none">
+    <table>
+      <caption>
+        MSE2024 weighted category, out of 571 instances
+      </caption>
+      <thead>
+        <tr>
+          <th onclick="sortTable('weightedTable', 0)">Solver</th>
+          <th onclick="sortTable('weightedTable', 1)">Solved<br />Instances</th>
+          <th onclick="sortTable('weightedTable', 2)">Average<br />Time</th>
+          <th onclick="sortTable('weightedTable', 3)">PAR2<br />Score</th>
+          <th onclick="sortTable('weightedTable', 4)">Uniquely<br />Solved</th>
+          <th onclick="sortTable('weightedTable', 5)">Best<br />Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CASHWMaxSAT-DisjCom-S6</td>
+          <td>448</td>
+          <td>478.06</td>
+          <td>1,926.05</td>
+          <td>0</td>
+          <td>9</td>
+        </tr>
+
+        <tr>
+          <td>CASHWMaxSAT-DisjCom-S9</td>
+          <td>445</td>
+          <td>570.67</td>
+          <td>2,033.53</td>
+          <td>0</td>
+          <td>13</td>
+        </tr>
+
+        <tr>
+          <td>UWrMaxSat-SCIP</td>
+          <td>442</td>
+          <td>245.14</td>
+          <td>1,816.38</td>
+          <td>0</td>
+          <td>106</td>
+        </tr>
+
+        <tr>
+          <td>EvalMaxSAT</td>
+          <td>435</td>
+          <td>441.54</td>
+          <td>2,051.26</td>
+          <td>0</td>
+          <td>2</td>
+        </tr>
+
+        <tr>
+          <td>CASHWMaxSAT-DisjCad-S6</td>
+          <td>434</td>
+          <td>440.70</td>
+          <td>2,062.46</td>
+          <td>0</td>
+          <td>6</td>
+        </tr>
+
+        <tr>
+          <td>CASHWMaxSAT-DisjCad-S9</td>
+          <td>434</td>
+          <td>511.51</td>
+          <td>2,116.28</td>
+          <td>0</td>
+          <td>8</td>
+        </tr>
+
+        <tr>
+          <td>EvalMaxSAT-SBVA</td>
+          <td>431</td>
+          <td>437.60</td>
+          <td>2,095.63</td>
+          <td>0</td>
+          <td>2</td>
+        </tr>
+
+        <tr>
+          <td>EvalMaxSAT-SBVA-saveCores</td>
+          <td>431</td>
+          <td>444.82</td>
+          <td>2,101.08</td>
+          <td>1</td>
+          <td>4</td>
+        </tr>
+
+        <tr>
+          <td>wmaxcdcl-openwbo1200</td>
+          <td>420</td>
+          <td>378.02</td>
+          <td>2,182.08</td>
+          <td>0</td>
+          <td>68</td>
+        </tr>
+
+        <tr>
+          <td>cgss_default</td>
+          <td>416</td>
+          <td>190.95</td>
+          <td>2,093.58</td>
+          <td>0</td>
+          <td>99</td>
+        </tr>
+
+        <tr>
+          <td>cgss_abst_cg</td>
+          <td>415</td>
+          <td>182.04</td>
+          <td>2,099.38</td>
+          <td>0</td>
+          <td>79</td>
+        </tr>
+
+        <tr>
+          <td>wmaxcdcl</td>
+          <td>394</td>
+          <td>239.06</td>
+          <td>2,396.83</td>
+          <td>0</td>
+          <td>21</td>
+        </tr>
+
+        <tr>
+          <td>Pacose</td>
+          <td>384</td>
+          <td>213.98</td>
+          <td>2,501.87</td>
+          <td>3</td>
+          <td>48</td>
+        </tr>
+
+        <tr>
+          <td>PacoseMP2</td>
+          <td>382</td>
+          <td>260.05</td>
+          <td>2,557.16</td>
+          <td>2</td>
+          <td>19</td>
+        </tr>
+
+        <tr>
+          <td>Exact</td>
+          <td>318</td>
+          <td>260.39</td>
+          <td>3,335.21</td>
+          <td>0</td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td><strong>Virtual Best Solver</strong></td>
+          <td><strong>472</strong></td>
+          <td><strong>130.99</strong></td>
+          <td><strong>1,356.62</strong></td>
+          <td><!-- no data --></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="unweightedTable" style="display: none">
+    <table>
+      <caption>
+        MSE2024 unweighted category, out of 553 instances
+      </caption>
+      <thead>
+        <tr>
+          <!-- The "onclick" calls sortTable() with the column index -->
+          <th onclick="sortTable('unweightedTable', 0)">Solver</th>
+          <th onclick="sortTable('unweightedTable', 1)">Solved<br>Instances</th>
+          <th onclick="sortTable('unweightedTable', 2)">Average<br>Time</th>
+          <th onclick="sortTable('unweightedTable', 3)">PAR2<br>Score</th>
+          <th onclick="sortTable('unweightedTable', 4)">Uniquely<br>Solved</th>
+          <th onclick="sortTable('unweightedTable', 5)">Best<br>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>wmaxcdcl-openwbo1200</td>
+          <td>421</td>
+          <td>368.97</td>
+          <td>1,999.53</td>
+          <td>0</td>
+          <td>27</td>
+        </tr>
+        <tr>
+          <td>maxcdcl-openwbo300</td>
+          <td>419</td>
+          <td>218.75</td>
+          <td>1,910.41</td>
+          <td>0</td>
+          <td>35</td>
+        </tr>
+        <tr>
+          <td>UWrMaxSat-SCIP-MaxPre</td>
+          <td>415</td>
+          <td>223.63</td>
+          <td>1,964.57</td>
+          <td>4</td>
+          <td>109</td>
+        </tr>
+        <tr>
+          <td>EvalMaxSAT-SBVA</td>
+          <td>412</td>
+          <td>422.74</td>
+          <td>2,150.75</td>
+          <td>1</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>maxcdcl</td>
+          <td>411</td>
+          <td>207.90</td>
+          <td>2,003.34</td>
+          <td>0</td>
+          <td>114</td>
+        </tr>
+        <tr>
+          <td>EvalMaxSAT-SBVA-saveCores</td>
+          <td>404</td>
+          <td>452.06</td>
+          <td>2,270.22</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>EvalMaxSAT-SBVA</td>
+          <td>404</td>
+          <td>461.49</td>
+          <td>2,277.11</td>
+          <td>0</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>CASHWMaxSAT-DisjCom-S15</td>
+          <td>404</td>
+          <td>583.56</td>
+          <td>2,366.29</td>
+          <td>0</td>
+          <td>14</td>
+        </tr>
+        <tr>
+          <td>wmaxcdcl</td>
+          <td>404</td>
+          <td>320.42</td>
+          <td>2,174.05</td>
+          <td>0</td>
+          <td>13</td>
+        </tr>
+        <tr>
+          <td>CASHWMaxSAT-DisjCom-S18</td>
+          <td>402</td>
+          <td>643.35</td>
+          <td>2,433.68</td>
+          <td>0</td>
+          <td>14</td>
+        </tr>
+        <tr>
+          <td>CASHWMaxSAT-DisjCad-S15</td>
+          <td>401</td>
+          <td>557.67</td>
+          <td>2,383.41</td>
+          <td>0</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>CASHWMaxSAT-DisjCad-S18</td>
+          <td>400</td>
+          <td>614.23</td>
+          <td>2,436.33</td>
+          <td>0</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>Pacose</td>
+          <td>352</td>
+          <td>155.79</td>
+          <td>2,716.16</td>
+          <td>0</td>
+          <td>69</td>
+        </tr>
+        <tr>
+          <td>PacoseMP2</td>
+          <td>346</td>
+          <td>173.50</td>
+          <td>2,803.67</td>
+          <td>0</td>
+          <td>24</td>
+        </tr>
+        <tr>
+          <td>Exact</td>
+          <td>334</td>
+          <td>167.97</td>
+          <td>2,952.81</td>
+          <td>0</td>
+          <td>27</td>
+        </tr>
+        <tr>
+          <td><strong>Virtual Best Solver</strong></td>
+          <td><strong>458</strong></td>
+          <td><strong>187.94</strong></td>
+          <td><strong>1,392.54</strong></td>
+          <td><!-- no data --></td>
+          <td><!-- no data --></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Track sort direction per table & column
+    // Example structure: sortDirections["weightedTable"] = { colIndex1: "asc", colIndex2: "desc", ... }
+    let sortDirections = {};
+
+    function sortTable(tableId, columnIndex) {
+      const table = document.getElementById(tableId);
+      if (!table) {
+        console.error("Table not found with id:", tableId);
+        return;
+      }
+
+      const tbody = table.querySelector("tbody");
+      if (!tbody) {
+        console.error("No <tbody> found in table with id:", tableId);
+        return;
+      }
+
+      // If we don’t have a record of sortDirections for this table yet, create an empty object
+      if (!sortDirections[tableId]) {
+        sortDirections[tableId] = {};
+      }
+
+      // Default to ascending if this is the first time sorting this column
+      const currentDirection = sortDirections[tableId][columnIndex] || "asc";
+      const newDirection = currentDirection === "asc" ? "desc" : "asc";
+      sortDirections[tableId][columnIndex] = newDirection;
+
+      // Convert table rows to an array for sorting
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+
+      // Sort function
+      rows.sort((rowA, rowB) => {
+        // Get cell text
+        const cellA = rowA.cells[columnIndex]?.textContent.trim() ?? "";
+        const cellB = rowB.cells[columnIndex]?.textContent.trim() ?? "";
+
+        // Attempt numeric parse
+        const valA = parseFloat(cellA.replace(",", ""));
+        const valB = parseFloat(cellB.replace(",", ""));
+
+        if (!isNaN(valA) && !isNaN(valB)) {
+          // Both numeric
+          return newDirection === "asc" ? valA - valB : valB - valA;
+        } else {
+          // Compare strings
+          if (cellA < cellB) return newDirection === "asc" ? -1 : 1;
+          if (cellA > cellB) return newDirection === "asc" ? 1 : -1;
+          return 0;
+        }
+      });
+
+      // Re-insert sorted rows
+      rows.forEach((row) => tbody.appendChild(row));
+    }
+  </script>
+</body>
