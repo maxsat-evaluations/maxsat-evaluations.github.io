@@ -1,0 +1,48 @@
+<p></p>
+       
+<h1>Recommendations on Solver Robustness & Testing</h1>
+  <br>
+  <p>As the yearly MaxSAT Evaluation drives MaxSAT 
+  solver development forward, we want to recommend the following 
+  standardizations to the solvers to make them easier to use.
+  These suggestions are in line with the mathematical logic of the Boolean 
+  satisfiability problem. </p>
+  <p>
+    <ul>
+      <li>An empty instance should yield a weight "o 0", with an empty model line "v" and the status line "s OPTIMUM FOUND".</li>
+      <li>An empty hard clause should result in an unsatisfiable instance.</li>
+      <li>An empty soft clause should be considered unsatisfied by all solutions and thus incur cost.</li>
+      <li>A solver should accept weight 0 for a soft clause.</li>
+    </ul>
+  </p>
+  <p><b>We emphasize that all benchmark sets used in the main track evaluation only 
+  contain non-empty clauses and at least one soft clause.</b> These suggestions should be taken 
+  as recommendations and topics for discussion. Similar topics are currently discussed in 
+  the SAT solving community as well where some solvers, like kissat and CaDiCaL, can handle empty 
+  instances/clauses, while others cannot. </p>
+
+
+<h2>MaxSAT Fuzzer and Regression Suite</h2>
+  <p>We further want to advertise the use of a 
+  <b><a href=https://github.com/tobipaxe/MaxSATRegressionSuite/tree/main>regression suite</a></b> which provides a set of 
+  small valid instances known to have caused 
+  issues in a previous solver.
+  <b>All solvers submitted to the main tracks need to pass the regression suite.</b>
+  More specific information can be found on the <a href=https://github.com/tobipaxe/MaxSATRegressionSuite/tree/main>GitHub</a> repository
+  or the <a href="/rules.html">rules page.</a>
+</p>
+
+  <br>
+  <p>Finally, we would like to bring your attention to 
+    a <b><a href=https://github.com/tobipaxe/MaxSAT-Fuzzer>MaxSAT fuzzing toolsuite</a></b> 
+  for exhaustive testing of MaxSAT solvers available on <a href=https://github.com/tobipaxe/MaxSAT-Fuzzer>Github</a>. 
+  This toolsuite compares the solution of your solver 
+  with any existing solver which complies to the 
+  rules of the MaxSAT Evaluation. It compares if the "o-value"
+  is the same as the value provided by your model and if no 
+  other solver (e.g. a verified MaxSAT solver) 
+  can produce a better solution output with a 
+  correct model. Then it minimizes the instance
+  with a delta debugging algorithm to provide simple 
+  instances for debugging.
+</p>

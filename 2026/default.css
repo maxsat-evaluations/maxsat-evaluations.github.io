@@ -16,8 +16,8 @@ html {min-height: 100%;}
 	padding: 0;
 }
 
-a {color: #cc0000;}
-a:hover {color: #ff0000;}
+a {color: #530080;}
+a:hover {color: #aa0b75;}
 
 body {
 	background: #f0f0f0;
@@ -56,7 +56,7 @@ blockquote {
 	padding-left: 28px;
 }
 
-h1,h2,h3 {padding-top: 6px; color: #990000; margin-bottom: 4px;}
+h1,h2,h3 {padding-top: 6px; color: #530080; margin-bottom: 4px;}
 
 
 /* misc */
