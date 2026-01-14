@@ -10,13 +10,60 @@
 <p>
   Please follow the instructions given in the <a href="call-for-benchmarks.html">call for benchmarks</a>, and
   submit benchmarks by email to <a href="mailto:maxsatevaluation@gmail.com">maxsatevaluation@gmail.com</a> using the subject title 
-  "MSE24 benchmark submission" <b>by June 10 the latest</b>.
+  "MSE26 benchmark submission" <b>by the submission deadline specified on the right-hand side of each page</b>.
   
   </p>
 
 <a name=solversubmission></a>
 <h2>Solver Submissions: Main Tracks (Exact and Anytime)</h2>
-<p><b>Information on the submission procedure will be made available early 2026</b> 
+
+<p style="color: blue;">
+  <b>Note:</b> Even if the exact tracks will be not be run StarExec, participating 
+solvers should still be submitted following a procedure which is very similar to the previous submission of oslvers onto StarExec. 
+Essentially, the procedure is mostly identical to previous years expect for the fact that the zipped solver should be 
+submitted by email to <a href="mailto:maxsatevaluation@gmail.com">maxsatevaluation@gmail.com</a> with the subject title 
+"MSE26 benchmark submission". Please specify the track(s) in which your solver participate in the e-mail.
+Another difference to previous years is that only one zip file should be submitted regardless of the number of tracks that a solver 
+participates in. Participation in the different tracks is instead handled by different configurations (run scripts)
+as detailed on this page</p>
+
+
+<p style="color: blue;"> Solvers need to be submitted by the submission deadline specified on the right-hand-side of the page. 
+To submit a solver you will need to prepare a zip or tar file (the
+suffix needs to be .zip, .tar, tar.gz, or .tgz) with the following
+file and directory structure
+<pre>
+./bin/&#60your_solver_binary&#62
+./bin/run_TRACK
+./code/&#60your_source_tree&#62
+./doc/&#60your_solver_description&#62.pdf
+</pre><br>
+</p>
+
+<ul>
+  <li> ./bin/solver_binary is your executable which should be a statically linked linux executable. 
+  <li> ./bin/run_TRACK is a track specific <b>configuration</b>. It is just a shell script used to
+    invoke your solver in the correspondinf track. A bare bones version would be <br><br>
+<pre>
+#!/bin/bash
+./&#60your_solver_binary&#62 $1 
+</pre><br> which will invoke your solver on an input file passed into
+the script as the $1 variable. More elaborate versions might supply
+various parameter settings to your solver. TRACK should be one of:
+    <ul>
+      <li><strong>EXACT-W</strong> for solvers participating in the exact weighted track</li>
+      <li><strong>EXACT-UW</strong> for solvers participating in the exact unweighted track</li>
+      <li><strong>ANYTIME-W</strong> for solvers participating in the anytime weighted track</li>
+      <li><strong>ANYTIME-UW</strong> for solvers participating in the anytime unweighted track</li>
+    </ul>
+
+  <li>./code/ is where you place
+  your <a href="rules.html#source">source code</a> (which can be in a 
+    directory tree).
+    <li>./doc/ is where you place your <a href="rules.html#description">PDF formatted description</a> of
+    your solver.
+</ul>  
+
 
 <h3>Testing Your Solver Prior to Submissison</h3>
 <p>The organizers strongly urge developers to test their solvers prior to submitting them. 
@@ -42,5 +89,5 @@ solver as a static library.
 Please see the maxsat/solver2023 directory in <a href="https://bitbucket.org/coreo-group/ipamir">the IPAMIR repository</a> for an 
 example (non-incremental) solver.
 Submit your solver as a single zip or gzipped tar package via email to <a href="mailto:maxsatevaluation@gmail.com">maxsatevaluation@gmail.com</a> 
-using the subject title "MSE26 incremental solver submission" by the submission deadline (TBA).
+using the subject title "MSE26 incremental solver submission" by the submission deadline detailed on the right-hand-side of each page. 
 </p>
