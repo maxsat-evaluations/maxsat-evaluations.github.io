@@ -16,17 +16,7 @@ The rules re still subject to change and will be finalized in early 2026. The cu
     originating from the same author(s) based on computation resource
     limitations.</p>
   <h4>Per-instance solver tuning</h4>
-  <p>Embedding strategies
-      specific to particular instances in the solver is considered to
-      be against the spirit of the evaluation which aims to encourage
-      the advancement of MaxSat solvers with wide coverage and general
-      applicability. Hence solvers are not allowed to employ triggers
-      to modify their behaviour, that are deemed to be specific to
-      particular instances. The final ruling on whether or not a
-      solver is using instance specific tuning will be made on a
-      case-by-case basis by the organizers, but only after further
-      consultation with the solver developers. Participants are
-      encouraged to consult the organizers in case of doubt.
+  <p>Embedding strategies specific to particular instances in the solver is considered to be against the spirit of the evaluation, which aims to encourage the advancement of MaxSat solvers with wide coverage and general applicability. Hence, solvers are not allowed to employ triggers that modify their behaviour and are deemed specific to particular instances. The organizers will make the final ruling on whether a solver is using instance-specific tuning on a case-by-case basis, after further consultation with the solver developers. Participants are encouraged to consult the organizers if in doubt.
     </p>
     <p style="color:blue">Subject to available resources the organizers might 
       still run solvers deemed to use instance specific tuning (such as portfolio type solvers
@@ -300,7 +290,7 @@ See details <a href="incremental.html">here</a>.
 	  of a weight. See below for an example.
 </p>
 
-<p style="color:blue">In the anytime tracks, the timeout will be given to the solver as the second parameter 
+<p style="color:blue">In the anytime tracks, the timeout will be given in seconds to the solver as the second parameter 
   to allow timeout-specific configurations. For example:
   <pre>./mysolver &#060;input_file_name&#062; &#060;timeout&#062;</pre>
 </p>
