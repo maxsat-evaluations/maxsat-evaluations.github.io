@@ -28,6 +28,11 @@ The rules re still subject to change and will be finalized in early 2026. The cu
       consultation with the solver developers. Participants are
       encouraged to consult the organizers in case of doubt.
     </p>
+    <p style="color:blue">Subject to available resources the organizers might 
+      still run solvers deemed to use instance specific tuning (such as portfolio type solvers
+      that mainly contribute with algorithm selection methods) and report their results 
+      separately. 
+    </p>
   
   <h4>Refusal of submissions</h4>
   <p>
@@ -133,10 +138,10 @@ will be ranked primarily based on the number
     an optimal solution.
 </p>
 
-<p style="color: blue;"><strong>New for 2026:</strong> The organizers will consider report on the ability of 
+<p style="color: blue;"><strong>New for 2026:</strong> The organizers will consider reporting on the ability of 
   exact solvers to produce lower bounds on the optimal cost. To be considered, a solver should output its lower bound 
-  it has computed according to the specifications given <a href="#output">later on the page</a>. Reporting lower bounds is optional. The solvers are 
-  primarily ranked on the number of solved instances within the timeout. 
+  it has computed according to the specifications given <a href="#output">later on the page</a>. A solver need not report lower bounds to participate. 
+  The solvers are primarily ranked on the number of solved instances within the timeout. 
 </p>
 
 <h3>Main tracks for anytime solvers</h3>
@@ -274,12 +279,12 @@ See details <a href="incremental.html">here</a>.
 
 <h2>Input and Output Requirements</h2>
 
-<h3>Main Ttacks</h3>
+<h3>Main Tracks</h3>
 
 <a name=input></a>
 <h4>Input format</h4>
 
-      <p>The input file must be read from the file given as a parameter to your solver. For example:</p>
+      <p>The input file must be read from the file given as the first parameter to your solver. For example:</p>
   <pre>./mysolver &#060;input_file_name&#062;</pre>
         <p>In MaxSAT Evaluation 2026, the same input format is used
           for all benchmark instances in the main tracks.
@@ -293,6 +298,11 @@ See details <a href="incremental.html">here</a>.
         smaller than 2<sup>63</sup>. The sum of the weights must be
           less than 2<sup>64</sup>-1. Hard clauses are declared by "h" instead
 	  of a weight. See below for an example.
+</p>
+
+<p style="color:blue">In the anytime tracks, the timeout will be given to the solver as the second parameter 
+  to allow timeout-specific configurations. For example:
+  <pre>./mysolver &#060;input_file_name&#062; &#060;timeout&#062;</pre>
 </p>
 
 
