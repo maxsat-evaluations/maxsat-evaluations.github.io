@@ -15,14 +15,15 @@ The rules re still subject to change and will be finalized in early 2026. The cu
     reserve the right to restrict the number of solver submissions
     originating from the same author(s) based on computation resource
     limitations.</p>
-  <h4>Per-instance solver tuning</h4>
-  <p>Embedding strategies specific to particular instances in the solver is considered to be against the spirit of the evaluation, which aims to encourage the advancement of MaxSat solvers with wide coverage and general applicability. Hence, solvers are not allowed to employ triggers that modify their behaviour and are deemed specific to particular instances. The organizers will make the final ruling on whether a solver is using instance-specific tuning on a case-by-case basis, after further consultation with the solver developers. Participants are encouraged to consult the organizers if in doubt.
-    </p>
-    <p style="color:blue">Subject to available resources the organizers might 
-      still run solvers deemed to use instance specific tuning (such as portfolio type solvers
-      that mainly contribute with algorithm selection methods) and report their results 
-      separately. 
-    </p>
+
+  <h4>Per-instance solver tuning & portfolio solvers</h4> 
+  <p style="color:blue">The evaluation aims to encourage the advancement of algorithms that compute solutions to MaxSat instances with 
+    broad coverage and general applicability. To be eligible for participating in the evaluation, the main contribution of a solver must be an 
+    implementation of an algorithm that computes solutions to MaxSAT instances. Furthermore, a solver is not allowed to modify its behavior in 
+    response to very specific triggers intended to target very small groups of instances.  The organizers will make a final determination, on a 
+    case-by-case basis, after further consultation with the solver developers, whether a solver's main contribution aligns with the spirit of the evaluation 
+    or a specific trigger is overly narrow. Participants are encouraged to consult the organizers if in doubt.
+    Subject to available resources, the organizers may still run solvers that do not follow this rule and report their results separately from those that do. </p>
   
   <h4>Refusal of submissions</h4>
   <p>
