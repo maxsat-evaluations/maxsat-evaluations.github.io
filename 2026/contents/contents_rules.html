@@ -143,10 +143,10 @@ will be ranked primarily based on the number
 <p>
     Solvers participating in the anytime tracks will be ranked based on the average of 
     the so called anytime scores. The anytime score, score(s,i), of a solver s on instance i 
-    is the ratio between the best solution found by s and the best known solution for 
+    is the ratio between the best solution found by s and the best solution found in any evaluation run for 
     i:
      <br>score(s, i) = &nbsp(1+ cost of best known cost for i) / (1 +cost of solution for i found by s)</li>
-      <li>For each instance we consider the best solution found by all anytime solvers within 300 seconds.</li>
+      <li>For each instance we consider the best solution found by all evaluation runs.</li>
       <li>For an instance i score is 0 if no solution was found by that solver.</li>
       <li>For each instance the anytime score is a value in [0, 1].</li>
       </ul>
