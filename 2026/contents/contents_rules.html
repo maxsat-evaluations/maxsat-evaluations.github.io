@@ -1,36 +1,31 @@
 <p></p>
 
 <h1>Rules</h1>
-<h2>Note</h2>
-The rules re still subject to change and will be finalized in early 2026. 
+<strong>Important note:</strong>
+The rules re still subject to change and will be finalized in early 2026. The current information on these pages is subject to approval from the organizers. 
 
 <h2>General</h2>
 <ul>
   <h4>Withdrawal</h4>
   <p>A solver can be withdrawn from MaxSAT
-    Evaluation 2026 only before the deadline for the submission of the
-    final versions. After this deadline no further changes or
-    withdrawals of the solvers are possible.</p>
+    Evaluation 2026 only before the deadline for the submission of solvers and benchmarks. 
+    After the deadline no further changes or withdrawals of the solvers are possible.</p>
   <h4>Number of solver submissions</h4>
   <p>The evaluation organizers
     reserve the right to restrict the number of solver submissions
     originating from the same author(s) based on computation resource
     limitations.</p>
-  <h4>Per-instance solver tuning</h4>
-  <p>Embedding strategies
-      specific to particular instances in the solver is considered to
-      be against the spirit of the evaluation which aims to encourage
-      the advancement of MaxSat solvers with wide coverage and general
-      applicability. Hence solvers are not allowed to employ triggers
-      to modify their behaviour, that are deemed to be specific to
-      particular instances. The final ruling on whether or not a
-      solver is using instance specific tuning will be made on a
-      case-by-case basis by the organizers, but only after further
-      consultation with the solver developers. Participants are
-      encouraged to consult the organizers in case of doubt.
-    </p>
+
+  <h4>Per-instance solver tuning & portfolio solvers</h4> 
+  <p>The evaluation aims to encourage the advancement of algorithms that compute solutions to MaxSat instances with 
+    broad coverage and general applicability. To be eligible for participating in the evaluation, the main contribution of a solver must be an 
+    implementation of an algorithm that computes solutions to MaxSAT instances. Furthermore, a solver is not allowed to modify its behavior in 
+    response to very specific triggers intended to target very small groups of instances.  The organizers will make a final determination, on a 
+    case-by-case basis, after further consultation with the solver developers, whether a solver's main contribution aligns with the spirit of the evaluation 
+    or a specific trigger is overly narrow. Participants are encouraged to consult the organizers if in doubt.
+    Subject to available resources, the organizers may still run solvers that do not follow this rule and report their results separately from those that do. </p>
   
-  <h4>Refusal of Submissions</h4>
+  <h4>Refusal of submissions</h4>
   <p>
     The organizers reserve the right to refuse solver or benchmarks submissions
     at their disgression.  
@@ -65,14 +60,13 @@ The rules re still subject to change and will be finalized in early 2026.
           solver will be considered bug-free in the evaluation. 
           More details on the regression suite later on this page.</li> 
 </ul>
-      If the solver's bug cannot be resolved, the submitters will
-      still have the option of having the solver's correct results
-      tabulated and reported in the table of results. However, the
-      results will be marked to indicate that the solver also
-      generated some incorrect results.</p>
+      If the solver's bug cannot be resolved, the submitters reserve 
+      the option of having the solver's correct results
+      tabulated and reported in the table of results but marking them
+      to indicate that the solver also generated some incorrect results.</p>
 
 <a name=source></a>
-  <h4>Use of Processor Cores</h4>
+  <h4>Use of processor cores</h4>
 <p>    In each track, solvers must use only
 a single core of the processor on the computing node it is run on.
   Solvers making use of multiple cores (for parallel computations) will be disqualified.</p>
@@ -81,8 +75,10 @@ a single core of the processor on the computing node it is run on.
 <p>Solver source code originating
   from the authors (including modifications to third-party source code
   such as SAT solvers as part of a solver) must be submitted together
-  with a corresponding solver binary that can, for main track solvers, be directly run on
-  StarExec. The source code package of each solver participating in
+  with a statically linked Linux binary. </p>
+ 
+  <p>
+  The source code package of each solver participating in
   the evaluation will be made available at the time when MaxSAT
   Evaluation 2026 results are presented at the SAT 2026 conference. In
   case bug fixes are submitted during the evaluation (i.e., if
@@ -103,13 +99,16 @@ Each entrant to MaxSAT Evaluation 2026 <b>must include</b> a short (at least 1, 
     affiliations.
     It should also provide details of any non-standard algorithmic techniques (e.g., heuristics, simplification/learning techniques, etc.)
 and data structures, as well as references to relevant literature (be they by the authors themselves or by others).
+</p>
 
-The system description must be formatted in <a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html">IEEE Proceedings style</a>, and submitted as PDF.
+<p><b>New for 2026</b> Solver authors are required to provide explicit provenance information for their submitted system in the descriptions, to the extent practical. This includes, in particular, which prior systems and codebases were used as a basis; the nature and extent of human modifications (e.g., lines of code changed); and, likewise, the nature and extent of changes introduced by generative AI tools, with those tools identified by name.</p>
+
+<p>The system description must be formatted in <a href="http://www.ieee.org/conferences_events/conferences/publishing/templates.html">IEEE Proceedings style</a>, and submitted as PDF.
     The system descriptions will be posted on the MaxSAT Evaluation 2026 website.
     Furthermore, given that the quality and number of system descriptions is
     high enough, the organizers are considering publishing the collection of
     system description as a report under the report series of Department of
-    Computer Science, University of Helsinki (with an ISSN number).
+    Computer Science, University of Helsinki (with an ISSN number).</p>
 
 <h4>Participation of the organizers</h4>
 <p>The organizers are allowed to enter their own solvers
@@ -127,10 +126,16 @@ The system description must be formatted in <a href="http://www.ieee.org/confere
 
 <p>
     Solvers participating in the exact tracks
-will be ranked based on the number
+will be ranked primarily based on the number
 	of solved instances within predefined per-instance resource
 	limitations. In the main tracks for exact solvers solving an instance means finding
     an optimal solution.
+</p>
+
+<p><strong>New for 2026:</strong> The organizers will consider reporting on the ability of 
+  exact solvers to produce lower bounds on the optimal cost. To be considered, a solver should output its lower bound 
+  it has computed according to the specifications given <a href="#output">later on the page</a>. A solver need not report lower bounds to participate. 
+  The solvers are primarily ranked on the number of solved instances within the timeout. 
 </p>
 
 <h3>Main tracks for anytime solvers</h3>
@@ -138,10 +143,10 @@ will be ranked based on the number
 <p>
     Solvers participating in the anytime tracks will be ranked based on the average of 
     the so called anytime scores. The anytime score, score(s,i), of a solver s on instance i 
-    is the ratio between the best solution found by s and the best known solution for 
+    is the ratio between the best solution found by s and the best solution found in any evaluation run for 
     i:
      <br>score(s, i) = &nbsp(1+ cost of best known cost for i) / (1 +cost of solution for i found by s)</li>
-      <li>For each instance we consider the best solution found by all anytime solvers within 300 seconds.</li>
+      <li>For each instance we consider the best solution found by all evaluation runs.</li>
       <li>For an instance i score is 0 if no solution was found by that solver.</li>
       <li>For each instance the anytime score is a value in [0, 1].</li>
       </ul>
@@ -152,7 +157,7 @@ will be ranked based on the number
         search progress in terms of improvements to the cost of best solution found as a function of time.</i>
 </p>
 
-<h3>Special track on incremental MaxSAT</h3>
+<h3>Special track on incremental solvers</h3>
 
     <p>In the incremental track, all solvers will be ranked on each benchmark application independently. For a specific benchmark application, 
       the rank of a solver is determined by the number of solved instances for that benchmark. Solving an instance means that all invocations 
@@ -162,7 +167,7 @@ will be ranked based on the number
 
 <h2>Solver Requirements</h2>
 
-<h3>Main Tracks</h3>
+<h3>Main tracks</h3>
 
 <p>Each solver submission must adhere to the following specification.
 <ul>
@@ -170,10 +175,10 @@ will be ranked based on the number
 MaxSAT instances in <a href="#input">the standard WCNF format</a>, and
 conform to <a href="#output">the output format specified
 here</a>.
-<li><b>Regression Suite:</b> 
+<li><b>Regression suite:</b> 
   Each solver submitted to the main tracks must pass a regression suite
   consisting of small instances which caused at least one solver from
-  the last evaluation to crash or to produce incorrect results. 
+  a previous evaluation to crash or to produce incorrect results. 
   Incorrect results could be claiming the wrong o-value (i.e. cost) for 
   an optimal solution (only exact tracks),
   a lower o-value than a verified optimal solution (exact and anytime tracks), or
@@ -181,14 +186,14 @@ here</a>.
   The regression suite is available at <a href=https://github.com/tobipaxe/MaxSATRegressionSuite/tree/main>Github</a>.
   The instances in the suite can be downloaded with the install script in the repository. 
   <ul>
-    <li> As detailed in the readme, a solver participating in the exact weighted track needs to pass 
+    <li> As detailed in the readme of the repository, a solver participating in the exact weighted track needs to pass 
       an invocation of testsolver.py with the default arguments except the --satSolver argument 
       that can be set to point to a sat solver. A solver participating only in the unweighted tracks 
       needs to pass with the argument --unweighted and a solver participating in the 
       anytime track needs to pass with the --anytime flag. </li>
   </ul>
 <a name=sigterm></a>
-<li><b>SIGTERM:</b> At the time limit solvers will receive a SIGTERM
+<li><b>Signal handling:</b> At the time limit solvers will receive a SIGTERM
   signal shortly before being forcibly terminated by a SIGKILL signal.
   <p>Anytime solvers must catch the SIGTERM signal at which point
   they can output the best solution they have found so far with a "o"
@@ -201,39 +206,35 @@ here</a>.
   associated with outputting the best solution found if that solution
   is not optimal.</p>
 
-  <p><i>Catching the SIGTERM signal on StarExec</i><br> StarExec is
-  currently sending a SIGTERM followed by a SIGKILL signal with
-  minimal delay. The time gap between SIGTERM and SIGKILL might not be
-  sufficient for your program to output its best solution. But we
-  suggest you try that first making sure to assemble all output before
-  finally flushing the output stream (multiple flush commands will
-  take more time). 
+  <p><i>Catching the SIGTERM signal</i><br> 
+  Since the delay betwrrn the SIGTERM and SIGKILL signal might be small 
+  on the execution environment, we suggest solver authors 
+  try to first  assemble all output before
+  finally flushing the output stream (as multiple flush commands will
+  take more time).</p> 
 
-  To address this issue we are in the process of incorporating a
-  longer delay to the StarExec platform that should be sufficient for
-  your program to complete its output.
-
-  In the meantime, if you want to test that your solver is properly
-  catching SIGTERM and then outputting its best solution, and have
-  found that StarExec's delay is too short then we can suggest two
-  other methods.
+  <p>
+  We recomment two methods to test that your solver is properly
+  catching SIGTERM and then outputting its best solution:</p>
 
   <ol>
   <li><b>Include the "runsolver" tool in your solver package.</b>
   <a href="https://www.cril.univ-artois.fr/~roussel/runsolver/runsolver-3.4.1.tar.bz2">runsolver</a>
   is a tool to control the memory and runtime of a solver. After
   downloading and statically compiling "runsolver", you can include
-  "runsolver" in your bin directory when uploading your solver to
-  StarExec. Then you can change your StarExec configuration script
+  "runsolver" in the same directory as your solver binary. 
+  Then you can change your configuration script
   (see <a href="submission.html#solversubmission"> solver
   submission</a>) so that runs your solver under "runsolver"'s control
   as follows:
 
   <pre>
   #!/bin/bash
+  CPU_LIMIT=300
+  WALLCLOCK_LIMIT=300
   delay=3
-  cpu=$(($STAREXEC_CPU_LIMIT-$delay-1))
-  wl=$(($STAREXEC_WALLCLOCK_LIMIT-$delay-1))
+  cpu=$(($CPU_LIMIT-$delay-1))
+  wl=$(($WALLCLOCK_LIMIT-$delay-1))
 
   ./runsolver -d $delay -C $cpu -W $wl -v out.v -w out.w ./&#60your_solver_binary&#62 $1
   </pre><br> which will send a SIGTERM signal and after the "delay"
@@ -245,26 +246,25 @@ here</a>.
   </p>
 
   <li> <b>Run your solver using the linux "timeout" command.</b>
-    Again you would modify your StarExec configuration script, but
+    Again you modify your configuration script, but
     this time there is no need to upload runsolver. Instead you invoke your solver as follows:
 
 <pre>
 #!/bin/bash
 delay=3
-wl=$(($STAREXEC_WALLCLOCK_LIMIT-$delay))
+wl=$(($WALLCLOCK_LIMIT-$delay))
 timeout -s 15 &#60wl&#62 ./&#60your_solver_binary&#62 $1 
 </pre><br>Where &#60wl&#62 is the runtime for your solver
 minus the delay in seconds that you want to have between SIGTERM and
-SIGKILL (when you create a StarExec job set the job's timeout to be
-greater than &#60delay&#62). This will cause the system to
+SIGKILL. This will cause the system to
 send your solver a SIGTERM signal after &#60delay&#62 seconds,
-after which StarExec will terminate your solver at its timeout.
+after which your solver is terminated at the systems timeout.
 </ol>
 </li>
 </ul>
 </p>
 
-<h3>Special Track on Incremental MaxSAT</h3>
+<h3>Special Track on incremental MaxSAT</h3>
 
 <p>
 Solvers participating in the incremental track are required to implement a subset of functions from the IPAMIR interface.
@@ -276,9 +276,9 @@ See details <a href="incremental.html">here</a>.
 <h3>Main Tracks</h3>
 
 <a name=input></a>
-        <h4>Input format</h4>
+<h4>Input format</h4>
 
-      <p>The input file must be read from the file given as a parameter to your solver. For example:</p>
+      <p>The input file must be read from the file given as the first parameter to your solver. For example:</p>
   <pre>./mysolver &#060;input_file_name&#062;</pre>
         <p>In MaxSAT Evaluation 2026, the same input format is used
           for all benchmark instances in the main tracks.
@@ -292,6 +292,11 @@ See details <a href="incremental.html">here</a>.
         smaller than 2<sup>63</sup>. The sum of the weights must be
           less than 2<sup>64</sup>-1. Hard clauses are declared by "h" instead
 	  of a weight. See below for an example.
+</p>
+
+<p>In the anytime tracks, the timeout will be given in seconds to the solver as the second parameter 
+  to allow timeout-specific configurations. For example:
+  <pre>./mysolver &#060;input_file_name&#062; &#060;timeout&#062;</pre>
 </p>
 
 
@@ -422,6 +427,17 @@ to the old format.</p>
             </li>
             <br>
             <li>
+              <p>
+                  <strong>New for 2026 Lower Bound Line ("c LB " lines)</strong>
+                    These optional lines are a special type of comment line that start with 5 characters: 
+                    lower case 'c', a space (ASCII code 32), upper case 'L', upper case 'B', and another space.
+                    These characters are followed by a non-negative integer that represents the current lower 
+                    bound on the optimal cost of the instance that the solver has. 
+              </p>
+
+            </li>
+            <br>
+            <li>
                 <strong>Solution Values (Truth Assignment) ("v "
                 lines):</strong><br> These lines start by the two
                 characters: lower case 'v' followed by a space (ASCII
@@ -468,13 +484,12 @@ to the old format.</p>
             (and it must match the data specified in the "v" line).
 
         <h4>Example</h4>
-        <pre>c --------------------------<br>c My MaxSAT Solver<br>c --------------------------<br>o 143<br>s OPTIMUM FOUND<br>v 0 1 1 0 0 1 0 1 1 1 0 0 1 0 0 1 0 1 1 1</pre>
+        <pre>c --------------------------<br>c My MaxSAT Solver<br>c --------------------------<br>o 143<br>s OPTIMUM FOUND<br>v 01100101110010010111</pre>
 
 <br>
-Details on the output are available in the <a href="vline.html">v-line section</a>. 
 
 
-<h3>Special Track on Incremental MaxSAT</h3>
+<h3>Special track on incremental MaxSAT</h3>
 
 <p>
 Solvers participating in the incremental track perform their I/O via the IPAMIR interface, and are required to implement a subset of functions from this generic interface. See details <a href="incremental.html">here</a>.

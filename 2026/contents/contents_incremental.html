@@ -80,7 +80,7 @@ Artificial Intelligence 241:45-65, 2016.
 
 <p>(See <a href="call-for-benchmarks.html">Call for Benchmarks</a> for submission instructions.)
   For this newly-established special track on incremental MaxSAT,
-  we strongly encourage the community to support this new development by submitting benchmark applications. In contrast to main track submissions,
+  <strong>we strongly encourage the community to support</strong> this new development by submitting benchmark applications. In contrast to main track submissions,
   a benchmark application in the incremental track constitutes a command-line program with a collection of input files. An instance of the benchmark application constitutes an execution
   of the program which makes multiple MaxSAT solver invocations through the <a href="incremental.html">IPAMIR interface</a> on a given input file, the name of which is given as the single
   command\-line argument to the program.</p>
@@ -110,11 +110,7 @@ using the subject title "MSE26 solver submission" by the submission deadline det
   is determined by the number of solved instances for that benchmark. Solving an instance means that all invocations of the solver are correct, i.e. correctly return either OPTIMUM FOUND or UNSAT as specified in the IPAMIR header.
 </p>
 
-<p>Following the ideals of the evaluations and taking also into account the fact
-  that the incremental track is now organized for the first time, 
-a solver will not be immediate
-        disqualified if it displays a wrong solution during the
-        execution of the evaluation. The organizers will aim to
+<p>Following the ideals of the evaluations the organizers will aim to
         provide all participants a fair chance of submitting bug fixes.
 A solver in
   the incremental track is considered buggy if it
@@ -124,47 +120,3 @@ A solver in
 
 
 
-<!--
-
-<h2>Benchmark Examples</h2>
-
-!!! On the webpage we should probably unify description either to soft literals or clauses. But 
-for contacting potential application developers clauses are probably better.... !!!!
-
-<ol type="1">
-  <li> <b>MaxSAT-based CEGAR for argumentation dynamics</b>. A MaxSAT solver is called
-    iteratively on an abstraction of the instance, obtaining a solution candidate
-    from the optimal truth assignment. The candidate is checked for counterexamples
-    using an external SAT solver call (implemented using Minisat 2.2). If one is
-    found, the abstraction is refined by adding a hard clause. Otherwise, the
-    candidate solution is an actual solution, and the optimal truth assignment is
-    printed. <br><br>
-    <b>Input:</b> Argumentation framework in APX format (see <a href=TODO>TODO: link</a>). <br>
-    <b>Incremental (i.e. between solver calls) functionality required:</b> adding hard clauses. <br>
-    <b>Ipamir functions required:</b> ipamir_add_hard, ipamir_val_lit <br>
-    <b>Output:</b> Optimal objective value and truth assignment.
-    <br><br>
-  <li> <b>MaxSAT for learning boosted decision trees</b>. A MaxSAT solver is called
-    iteratively on an instance that initially has unit weights on all soft clauses. 
-    Between iterations, weights of satisfied soft clauses are lowered 
-    and weights of falsified soft clauses are increased, resulting in
-    diverse solutions. The benchmark exits after a fixed number of iterations.
-    <br><br>
-    <b>Input:</b> Binary dataset in CSV format. <br>
-    <b>Incremental (i.e. between solver calls) functionality required:</b> changing weights of soft clauses.<br>
-    <b>Ipamir functions required:</b> ipamir_set_weight, ipamir_val_lit <br>
-    <b>Output:</b> All optimal objective values and truth assignments.
-    <br><br>
-  <li><b>MaxSAT for regularization parameter sweep</b> A MaxSAT solver is called
-    iteratively on an instance with soft clauses having two different weights w_1 or
-    w_2 initially with w_1 < w_2. Between iterations, the weights of soft clauses are adjusted by 
-    increasign the value of w_1 and decreasing the value of w_2. The benchmark exits after a 
-    fixed number of iterations.  
-    <br><br>
-    <b>Input:</b> Binary dataset in CSV format. <br>
-    <b>Incremental (i.e. between solver calls) functionality required:</b> changing weights of soft clauses.<br>
-    <b>Ipamir functions required:</b> ipamir_set_weight <br>
-    <b>Output:</b> All optimal objective values and truth assignments.
-</ol>
-
--->    
