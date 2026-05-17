@@ -76,6 +76,12 @@ various parameter settings to your solver. TRACK should be one of:
     your solver.
 </ul>  
 
+<p><b>Update:</b> 
+  To allow for solvers written in Python, an extra script ./bin/build_solver is allowed. 
+  In this case, Python (version 3.13.1) and virtualenv (version 20.29.2) are installed and the build-script creates a virtual environment (in the bin-folder), installs all the requirements and builds the solver.
+ The script run_TRACK then loads this virtual environment and calls the solver on the given instance similar as the C++ solvers. 
+</p>
+
 
 <h3>Testing Your Solver Prior to Submissison</h3>
 <p>The organizers strongly urge developers to test their solvers prior to submitting them. 
