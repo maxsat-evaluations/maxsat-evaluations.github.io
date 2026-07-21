@@ -1,0 +1,197 @@
+/*#############################################################
+Name: Dirtylicious
+Date: 2007-03-10
+Description: A soft-colored, bright and somewhat dirty two-column template.
+Author: Viktor Persson
+URL: http://templates.arcsin.se
+
+Feel free to use and modify but please provide credits.
+#############################################################*/
+
+/* standard elements */
+html {min-height: 100%;}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {color: #530080;}
+a:hover {color: #aa0b75;}
+
+body {
+	background: #f0f0f0;
+	color: #000000;
+	font: normal 65.5% Tahoma,sans-serif;
+	padding-top: 10px;
+}
+
+p,code,ul {padding-bottom: 1.2em;}
+
+li {list-style: none;}
+
+h1 {font: normal 1.8em Tahoma,sans-serif;}
+h2 {font: normal 1.4em sans-serif;}
+h3 {font: normal 1.2em Tahoma,sans-serif;}
+
+form,input {margin: 0; padding: 0; display: inline;}
+
+code {
+	background: #FFF;
+	border: 1px solid #EEE;
+	border-left: 6px solid #CCC;
+	color: #666;
+	display: block;
+	font: normal 1em Tahoma,sans-serif;
+	line-height: 1.6em;
+	margin-bottom: 12px;
+	padding: 8px 10px;
+	white-space: pre;
+}
+
+blockquote {
+	background: url(img/quote.gif) no-repeat;
+	display: block;
+	font-weight: bold;
+	padding-left: 28px;
+}
+
+h1,h2,h3 {padding-top: 6px; color: #530080; margin-bottom: 4px;}
+
+
+/* misc */
+.clearer {clear: both; font-size: 0;}
+.left {float: left;}
+.right {float: right;}
+
+/* structure */
+.inner-container {
+	border: 0px solid #D7D7D2;
+	background: #FFFFFF;
+	font-size: 1.2em;
+	margin: 0 auto;
+	padding: 0px;
+	width: 820px;
+}
+
+.outer-container {
+	background: #f0f0f0;
+	padding-bottom: 0px;
+}
+
+/* headere & title */
+.header {
+	background: #FFFFFF url('header.jpg') no-repeat top; 
+	height: 250px;
+        margin-left: 0px;
+	margin-bottom: 5px;
+	text-align: left;
+}
+.header .title {
+	color: #000000;
+	padding-top: 120px;
+	padding-left: 20px
+}
+.header .title .sitename a {
+	border-bottom: 1px dashed #ffffff;
+	color: #000000;
+	font: bold 3em sans-serif;
+	padding-bottom: 5px;
+	text-decoration: none;
+}
+.header .title a:hover { }
+.header .title .slogan {
+	font: normal 1.1em Verdana,sans-serif;
+	padding-top: 6px;
+}
+
+/* path */
+.path {
+	background: #949490;
+	color: #FFF;
+	font: normal 1.1em Verdana,sans-serif;
+	padding: 8px 12px;
+}
+.path a {
+	color: #FAFAFA;
+	text-decoration: none;
+}
+.path a:hover {
+	color: #FFE;
+	text-decoration: underline;
+}
+
+/* main */
+.main {
+	background: url(img/main.gif) repeat-y;
+	border-top: 4px solid #FFF;
+	padding: 0px 12px 0 0;
+}
+
+/* content */
+.content {
+	float: right;
+	width: 580px;
+}
+.content .descr {
+	color: #664;
+	font-size: 1.2em;
+	margin-bottom: 6px;
+}
+.content li {
+	list-style: url(img/li.gif);
+	margin-left: 18px;
+}
+.content p {font-family: Tahoma,sans-serif;}
+
+td { padding-right: 20px;}
+
+/* navigation */
+.navigation {
+	float: left;
+	width: 200px;
+	padding-right: 10px;
+        background: #ffffff;
+/*        border-right: 1px solid #EAEADA;*/
+}
+.navigation h2 {
+	color: #000000;
+	font: normal 1.1em Tahoma,sans-serif;
+	line-height: 30px;
+	margin: 0;
+	padding-left: 12px;
+        border-bottom: 1px solid #EAEADA;
+}
+.navigation ul {
+	padding: 0;
+/*	border-bottom: 1px solid #EAEADA;*/
+}
+.navigation li { } /*border-bottom: 1px solid #EAEADA;}*/
+.navigation li a {
+	font-size: 1em;
+	color: #554;
+	display: block;
+	padding: 8px 0 8px 8%;
+	text-decoration: none;
+	width: 95%;
+}
+.navigation li a:hover {
+	background: #f0f0f0;
+	color: #000000;	
+}
+
+
+/* footer */
+.footer {
+	background: #f0f0f0;
+	color: #666666;
+	font-size: .7em;
+	font: sans-serif;
+	margin-top: 0px;
+	width: 820px;
+}
+.footer a {
+	color: #666666;
+	text-decoration: none;
+}
+.footer a:hover {}
